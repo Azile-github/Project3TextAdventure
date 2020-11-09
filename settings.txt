@@ -1,0 +1,5 @@
+This TXT Exists to allow the user to change aspects of the game and add their own content. In other folders are guides to creating monsters and items.
+Number of Monsters on T1: 15
+Number of Monsters on T2: 15
+Number of Monsters on T3: 15
+Number of Items: 20

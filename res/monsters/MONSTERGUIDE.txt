@@ -1,0 +1,22 @@
+This guide serves as a template and explination on how to make monsters.
+Here is a template of monsters
+
+###
+Ghost
+1
+15
+5
+4
+7
+16
+###
+Ghost, is the monster's name
+1, is the table the monster is rolled on for encounters
+15, is the hit points the monster has
+5, is the median damage the monster can do
+4, is added to the number it randomly generates from 1 - 20 to hit the defender
+7, is the number needed to roll to hit the monster
+16, is the reward base, the number is used to calculate reward in gold. 
+
+When creating monsters, make sure to include them on the table you want them to appear as an ID.
+Also in settings, update the number of monsters on each table to accurately represent any changes.

@@ -1,8 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h> 
+#include <vector>
 
 using namespace std;
+
+int loadSave();
 
 int main(){
   bool loadState = false;
@@ -44,4 +47,11 @@ int main(){
       }
     }
   }
+}
+int loadMonsterData(){
+  int monsters;
+}
+
+int loadSave(){
+
 }
