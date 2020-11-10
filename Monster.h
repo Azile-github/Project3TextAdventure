@@ -10,14 +10,14 @@ using namespace std;
 class Monster{
   private:
     string nameMonster;
-    int table;
+    int table;//I want to store this so we can calculate reward from it and the reward base, same with damage. Higher tables are more variable results
     int hitPoints;
     int damageBase;
     int strength;
     int defence;
     int rewardBase;
     int noMonsters;
-  public:
+  public://oh god there are so many
     void SetNoMonsters();
     int initializeMonster(int id);
     void setName(string nameIn);
