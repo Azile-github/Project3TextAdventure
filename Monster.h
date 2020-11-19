@@ -14,7 +14,7 @@ class Monster{
     int hitPoints;
     int damageBase;
     int strength;
-    int defence;
+    int defense;
     int rewardBase;
     int noMonsters;
   public://oh god there are so many
@@ -25,14 +25,14 @@ class Monster{
     void setHP(int hitPointsIn);
     void setDamageBase(int damageBaseIn);
     void setStrength(int strengthIn);
-    void setDefence(int defenceIn);
+    void setDefense(int defenseIn);
     void setRewardBaseIn(int rewardBaseIn);
     string returnNameMonster();
     int returnTable();
     int returnHitPoints();
     int returnDamageBase();
     int returnStrength();
-    int returnDefence();
+    int returnDefense();
     int returnRewardBase();
     int takeDamage(); //returns remaining health
 };

@@ -55,3 +55,15 @@ void Monster::setHP(int hp){
   hitPoints = hp;
 }
 
+void Monster::setDamageBase(int damageBaseIn){
+  damageBase = damageBaseIn;
+}
+
+void Monster::setStrength(int strIn){
+  strength = strIn;
+}
+
+void Monster::setDefense(int defIn){
+  defense = defIn;
+}
+
