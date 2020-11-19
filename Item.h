@@ -14,7 +14,7 @@ class Item{
         int damage;
         
     public: 
-
+        Item();
         void setName(string name);
         string getName();
 

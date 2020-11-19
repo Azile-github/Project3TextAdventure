@@ -1,6 +1,11 @@
 #include "Monster.h"
 
-int Monster::initializeMonster(int idIn){
+Monster::Monster(){
+  cout << "YOU MORON, YOU ABSOLUTE BAFOON, FEED ME AN ID" << endl;
+  Monster();
+}
+
+Monster::Monster(int idIn){
   ifstream currentMonsterFile;
   string line;
   int pos;
@@ -13,7 +18,6 @@ int Monster::initializeMonster(int idIn){
   currentMonsterFile.open(stringId);
   if(!currentMonsterFile.is_open()){
     cout << "Critical Error: Failed to load Monster!";
-    return -1;
   }
   //while(getline(currentMonsterFile, line)){
   for(int i = 0; i < 6; i++){
@@ -67,3 +71,39 @@ void Monster::setDefense(int defIn){
   defense = defIn;
 }
 
+void Monster::setRewardBase(int rewardBaseIn){
+  rewardBase = rewardBaseIn;
+}
+
+string Monster::returnNameMonster(){
+  return nameMonster;
+}
+
+int Monster::returnTable(){
+  return table;
+}
+
+int Monster::returnHitPoints(){
+  return hitPoints;
+}
+
+int Monster::returnDamageBase(){
+  return damageBase;
+}
+
+int Monster::returnStrength(){
+  return strength;
+}
+
+int Monster::returnDefense(){
+  return defense;
+}
+
+int Monster::returnRewardBase(){
+  return rewardBase;
+}
+
+int Monster::takeDamage(int damage){
+  hitPoints = hitPoints - damage;
+  return hitPoints;
+}
