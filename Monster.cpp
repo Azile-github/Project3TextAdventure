@@ -108,6 +108,10 @@ int Monster::takeDamage(int damage){
   return hitPoints;
 }
 
+int Monster::getAttackBonus(){
+//takes the strength to return attack bonus
+}
+
 string Monster::drawAppearance(int id){
   //This will grab the appearance of the monster from /res/art/ and print return it.
 }

@@ -16,8 +16,29 @@ class Player{
     int gold;
     int quantity[4];
     Item items[4];
+    int highestFloor;
   public:
+    Player();
+    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn);
 
+    string getName();
+    void printStats();
+    int getMaxHealth();
+    int getHealth();
+    int getStrength();
+    int getDefense();
+    int getAttackBonus();
+    int getGold();
+    int getHighestFloor();
+
+    void setHealth(int hpIn);
+    void removeHealth(int damage);//input how much health they are losing not how much they will have
+    void setStrength(int strIn);
+    void setDefense(int defIn);
+    void setGold(int goldIn);
+    void addGold(int goldIn);
+    void setHighestFloor(int floorIn);
+    void addOneHighestFloor();
 };
 
 
