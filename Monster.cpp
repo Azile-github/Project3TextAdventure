@@ -42,3 +42,16 @@ int Monster::initializeMonster(int idIn){
   }
   //Functions that set the rest of the stats gotten from this
 }
+
+void Monster::setName(string nameIn){
+  nameMonster = nameIn;
+}
+
+void Monster::setTable(int tableIn){
+  table = tableIn;
+}
+
+void Monster::setHP(int hp){
+  hitPoints = hp;
+}
+

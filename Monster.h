@@ -18,8 +18,8 @@ class Monster{
     int rewardBase;
     int noMonsters;
   public://oh god there are so many
-    void SetNoMonsters();
-    int initializeMonster(int id);
+    //void SetNoMonsters();
+    int initializeMonster(int id);// ALWAYS RUN FIRST when introducing a monster to an encounter
     void setName(string nameIn);
     void setTable(int TableIn);
     void setHP(int hitPointsIn);
@@ -34,5 +34,6 @@ class Monster{
     int returnStrength();
     int returnDefence();
     int returnRewardBase();
+    int takeDamage(); //returns remaining health
 };
 #endif
