@@ -36,5 +36,6 @@ class Monster{
     int returnDefense();
     int returnRewardBase();
     int takeDamage(int damage); //returns remaining health
+    string drawAppearance(int id);
 };
 #endif

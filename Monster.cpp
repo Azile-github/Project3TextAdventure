@@ -107,3 +107,7 @@ int Monster::takeDamage(int damage){
   hitPoints = hitPoints - damage;
   return hitPoints;
 }
+
+string Monster::drawAppearance(int id){
+  //This will grab the appearance of the monster from /res/art/ and print return it.
+}

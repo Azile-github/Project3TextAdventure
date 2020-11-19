@@ -48,10 +48,37 @@ int main(){
     }
   }
 }
-int loadMonsterData(){
-  int monsters;
+void titleInterface(){
+
+}
+int loadSave(){
+
+}
+void generateFloor(){
+
+}
+void combat(){//loops until someone is dead
+
 }
 
-int loadSave(){
+int monsterAttack(){
+
+}
+
+int attackMenu(){
+
+}
+void saveGame(){
+
+}
+void highscoreFileSort(){
+
+}
+//this function takes the floor and monster's table to generate the gold
+int rewardCalc(){
+
+}
+//this function gets damages number and the user's strength to calc how much damage. call this from monsterAttack of menu when the player does an attack
+int damageCalc(int damageBase, int strength){
 
 }
