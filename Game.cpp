@@ -1,77 +1,18 @@
-#include <iostream>
-#include <fstream>
-#include <stdlib.h> 
-#include <vector>
+#include "Game.h"
 
-using namespace std;
-
-int loadSave();
-
-int main(){
-  bool loadState = false;
-  ifstream highscore;
-  ifstream save;
-  ifstream items;
-  ifstream shopStatus;
-  highscore.open("highscore.dat");
-  save.open("save.dat");
-  items.open("items.dat");
-  shopStatus.open("shop.dat");
-  while (loadState == false){
-    highscore.open("highscore.dat");
-    save.open("save.dat");
-    items.open("items.dat");
-    shopStatus.open("shop.dat");
-    cout << "Checking files..." << endl;
-    if(!highscore.is_open() || !save.is_open() || !items.is_open() || !shopStatus.is_open()){
-      cout << "One or more file has failed to open..." << endl;
-      if(!highscore.is_open()){
-        cout << "Generating high score file..." << endl;
-        ofstream createHighscore;
-        createHighscore.open("highscore.dat");
-        createHighscore.close();
-      }
-      if(!save.is_open()){
-        cout << "Generating save file..." << endl;
-        ofstream createSave;
-        createSave.open("save.dat");
-        createSave.close();
-      }
-      if(!items.is_open()){
-        cout << "ERROR: Items file failure! Please redownload the game!" << endl;
-        return -1;
-      }
-      if(!shopStatus.is_open()){
-        cout << "Error: Shop file failure! Please redownload the game!" << endl;
-        return -1;
-      }
-    }
-  }
-}
-void titleInterface(){
-
-}
-int loadSave(){
-
-}
-void generateFloor(){
-
-}
-void combat(){//loops until someone is dead
-
+void Game::loadFloor(int floor){
+  //loads the contents of the floor ie monster encounter
 }
 
-int monsterAttack(){
-
+int Game::gameOver(){
+  //ends the game to title
 }
 
-int attackMenu(){
-
+int Game::attackMenu(){
+  //user attack interface returns attack attempt value
 }
-void saveGame(){
 
-}
-//this function takes the floor and monster's table to generate the gold
-int rewardCalc(){
-
+int Game::highScoreSort(){
+  //for the title
+  //sorts the highscores gotten to reread to player
 }
