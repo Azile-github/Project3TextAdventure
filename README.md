@@ -1,3 +1,3 @@
-# githubtest
+# Text Adventure Rpg
 
-Sup
+This is a school project.
