@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #ifndef MONSTER_H
 #define MONSTER_H
 

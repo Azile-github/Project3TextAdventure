@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #ifndef WEAPON_H
 #define WEAPON_H
 

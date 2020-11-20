@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #include "Player.h"
 
 Player::Player(){

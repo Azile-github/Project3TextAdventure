@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #ifndef POTION_H
 #define POTION_H
 

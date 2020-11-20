@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #ifndef ITEM_H
 #define ITEM_H
 

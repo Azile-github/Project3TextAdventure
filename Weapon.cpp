@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 // FILE FOR ITEMS CLASS
 
 #include <iostream>

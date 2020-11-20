@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #ifndef SHOPKEEP_H
 #define SHOPKEEP_H
 

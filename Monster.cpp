@@ -1,3 +1,4 @@
+//Isabelle Hoff + Skyla Gyimesi
 #include "Monster.h"
 
 Monster::Monster(){
