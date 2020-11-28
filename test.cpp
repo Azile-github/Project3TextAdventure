@@ -3,8 +3,13 @@
 #include "Item.h"
 #include "Potion.h"
 #include "Weapon.h"
+#include "Game.h"
 
 using namespace std;
+
+// int main(){
+//     Game game;
+// }
 
 int main(){
     // testing Items
