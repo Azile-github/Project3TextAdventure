@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdlib.h> 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -119,8 +120,18 @@ void newGame(){
   }
   cout << "Wonderful, Wonderful... Welcome to the town of Rathamir, many adventurers like yourself have tried our challenge." << endl;
   cout << "In our town is, the spire. The spire is an infinitely tall tower of challenges for adventurers. We wish you luck on your adventure." << endl;
-  
 
+
+}
+
+void writeFile(string fileName, string content, int line){// file name must include location if not at root
+  vector<string> contents;
+  ifstream currentFile;
+  string lineConent;
+  currentFile.open(fileName);
+  while(getline(currentFile, lineConent)){
+    contents.push_back(lineConent);
+  }
 }
 
 int loadSave(){
