@@ -42,6 +42,20 @@ string Item::getDescription() const{
 }
 
 /**
+ * sets the IDNum of the item
+ * @param id the ID of the item 
+ */
+void Item::setID(string id){
+    ID = id;
+}
+/**
+ * @returns the description of the item
+ */
+string Item::getID() const{
+    return ID;
+}
+
+/**
  * sets the cost of the item to value
  * @param value the input cost of the item
  */

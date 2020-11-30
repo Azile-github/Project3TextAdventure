@@ -18,26 +18,89 @@ class Monster{
     int defense;
     int rewardBase;
     int noMonsters;
+
   public://oh god there are so many
     Monster();
     //void SetNoMonsters();
     Monster(int id);// ALWAYS RUN FIRST when introducing a monster to an encounter
+
+    // SETTERS 
+
+    /**
+     * @param nameIn the input name of the monster
+     */ 
     void setName(string nameIn);
+    /**
+     * @param TableIn the input ranking of the table
+     */ 
     void setTable(int TableIn);
+    /**
+     * @param hitPointsIn the input health of the monster
+     */ 
     void setHP(int hitPointsIn);
+    /**
+     * @param damageBaseIn the input damage base
+     */ 
     void setDamageBase(int damageBaseIn);
+    /**
+     * @param strengthIn the input strength
+     */ 
     void setStrength(int strengthIn);
+    /**
+     * @param defenseIn the input defense
+     */ 
     void setDefense(int defenseIn);
+    /**
+     * @param rewardBaseIn the input reward of the monster upon defeat
+     */ 
     void setRewardBase(int rewardBaseIn);
-    string returnNameMonster();
-    int returnTable();
-    int returnHitPoints();
-    int returnDamageBase();
-    int returnStrength();
-    int returnDefense();
-    int returnRewardBase();
+
+    // GETTERS
+
+    /**
+     * @returns the monster's name 
+     */ 
+    string returnNameMonster() const;
+    /**
+     * @returns the table ranking of the monster
+     */ 
+    int returnTable() const;
+    /**
+     * @returns the hitpoints of the monster
+     */ 
+    int returnHitPoints() const;
+    /**
+     * @returns the base damage the monster can inflict
+     */ 
+    int returnDamageBase() const;
+    /**
+     * @returns the strength of the monster
+     */ 
+    int returnStrength() const;
+    /**
+     * @returns the defense rating of the monster
+     */ 
+    int returnDefense() const;
+    /**
+     * @returns the base reward of the monster
+     */ 
+    int returnRewardBase() const;
+    /**
+     * @returns the attack bonus of the monster
+     */ 
+    int getAttackBonus() const;
+
+    // OTHERS
+    /**
+     * subtracts the damage taken by the monster and returns the remaining health
+     * @param damage the damage inflicted on the monster
+     * @returns the remaining health
+     */ 
     int takeDamage(int damage); //returns remaining health
-    int getAttackBonus();
+    /**
+     * @param id the id number of the monster to find the appearance file
+     * @returns the appearance of the monster
+     */ 
     string drawAppearance(int id);
 };
 #endif

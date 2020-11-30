@@ -1,6 +1,6 @@
 //Isabelle Hoff + Skyla Gyimesi
-#ifndef ITEM_H
-#define ITEM_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <string>
 #include "Item.h"

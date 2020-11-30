@@ -17,6 +17,9 @@ class Shopkeep{
         vector<Item> weapons;   // vector array of weapon items
         vector<Item> armors;    // vector array of armor items
         vector<vector<Item>> storage;   // vector of item vectors. There will be three rows and many columns
+                                        // row 0 --> Weapons
+                                        // row 1 --> Armor
+                                        // row 2 --> Potions
         
 
     public: 
@@ -59,9 +62,13 @@ class Shopkeep{
          *      2. Storage
          *      3. Monster stats
          *      Press anything else to travel back to tower
-         *  If player chooses 
+         *  If player chooses ...
+         *      1: opens the shopping menu
+         *      2: prints out all the items in storage to choose from
+         *      3: prints out the stats of encountered monsters
+         *      Anything else: player goes back to the tower and the floor they left off on
          */ 
-        void displayMainMenu();
+        void displayMainShopMenu();
         /**
          * returns a random shopkeep quote (also used by the displayMenu method)
          */ 

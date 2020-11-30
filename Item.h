@@ -13,6 +13,7 @@ class Item{
 
         string itemName;    // name of item
         string description; // description of item (what the shopkeep says about it)
+        string ID;          // the ID number of the item (example W001 for weapon 001 out of 99)
         int cost;           // cost in gold (from killing monsters) of the item
         bool playerHas;     // if true, then the player has this and it will not show up in the shopkeep menu
                             // if false, then player does not have this and it will show up in the shopkeep menu
@@ -42,12 +43,22 @@ class Item{
         string getDescription() const;
 
         /**
+         * sets the IDNum of the item
+         * @param desc the description of the item (what the shopkeep says about it)
+         */ 
+        void setID(string id);
+        /**
+         * @returns the ID of the item
+         */ 
+        string getID() const;
+
+        /**
          * sets the cost of the item to value
          * @param value the input cost of the item
          */
         void setCost(int value);
         /**
-         * @returns the cast of the item
+         * @returns the cost of the item
          */
         int getCost() const;  
 
