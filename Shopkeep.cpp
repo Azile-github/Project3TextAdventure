@@ -4,7 +4,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Shopkeep.h"
 #include "Item.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Potion.h"
 
 using namespace std;
 
@@ -15,7 +19,7 @@ using namespace std;
 /**
  * loads the shopkeep quotes from the txt file into the quotes vector
  */ 
-void loadQuotes(){
+void Shopkeep::loadQuotes(){
 
 }
 /**
@@ -29,7 +33,6 @@ void loadQuotes(){
  * For Weapons list:
  *      NAME
  *      DESCRIPTION
- *      ID
  *      cost
  *      playerHas (this will be false by default)
  *      attackBonus
@@ -37,19 +40,17 @@ void loadQuotes(){
  * For Armor list:
  *      name
  *      description
- *      ID
  *      cost
  *      playerHas
  *      defenseBonus
  * For Potion list:
  *      name
  *      descritpion
- *      ID
  *      cost
  *      playerHas
  *      hpBonus
  */ 
-void loadItems(){
+void Shopkeep::loadItems(){
     // opens file
     ifstream myFile;
     myFile.open("ItemsFile.txt");
@@ -59,9 +60,17 @@ void loadItems(){
     //char newItem = '#';
     int itemCategory = -1;  // depicts the category of item to save to
                             // 0 is weapons, 1 is armor, 2 is potions
+    Weapon tempW;
+    Armor tempA;
+    Potion tempP;
+    int tempNum;
 
     // begins to loop through the file
     while(getline(myFile, line)){
+        Weapon tempW;
+        Armor tempA;
+        Potion tempP;
+        int tempNum;
         // if the first char of line is $ ...
         if(line.at(0) == '$'){
             // add a new vector row to shop
@@ -70,12 +79,66 @@ void loadItems(){
         } // otherwise...
         // decide which category it's loading and add the item to the vector
         
-        if(itemCategory == 0){ // weapons category
-            
-            
-        }else if(itemCategory == 1){
+        if(line.empty()){ continue; } // if the line is empty, skip and continue
 
-        }else if(itemCategory == 2){
+        if(itemCategory == 0){ // weapons category
+
+            // set playerHas to default
+            tempW.setPlayerHas(false);
+
+            // set name
+            tempW.setItemName(line);
+            getline(myFile, line);
+
+            // set description
+            tempW.setDescription(line);
+            getline(myFile, line);
+
+            // set cost
+            tempNum = stoi(line);
+            tempW.setCost(tempNum);
+
+            // set attack bonus
+            tempNum = stoi(line);
+            tempW.setWeaponAttackBonus(tempNum);            
+            getline(myFile, line);
+
+            // set damage bonus
+            tempNum = stoi(line);
+            tempW.setWeaponDamageBonus(tempNum);
+
+            // add to weapons vector
+            weapons.push_back(tempW);
+            
+        }else if(itemCategory == 1){ // armor category
+
+            // set playerHas to default
+            tempA.setPlayerHas(false);
+
+            // set name
+            tempA.setItemName(line);
+            getline(myFile, line);
+
+            // set description
+            tempA.setDescription(line);
+            getline(myFile, line);
+
+            // set cost
+            tempNum = stoi(line);
+            tempA.setCost(tempNum);
+            getline(myFile, line);
+
+            // set defense bonus
+            tempNum = stoi(line);
+            tempA.setDefBonus(tempNum);
+
+            // add to armor vector
+            armors.push_back(tempA);
+
+        }else if(itemCategory == 2){ // potion category
+
+        
+
 
         }else{ /* something went wrong if it gets here */ }
     }
@@ -93,16 +156,22 @@ void loadItems(){
  * Asks for user input on which category to access, and if it's 1,2,or 3 then calls printStorageItems
  * to display that particular group of items. If anything else, go back to main menu
  */ 
-void displayStorage();
+void Shopkeep::displayStorage(){
+
+}
 /**
  * prints the storage items in that specific category using the storage vector
  */ 
-void printStorageItems();
+void Shopkeep::printStorageItems(){
+
+}
 /**
  * in the displayStorage() player might choose to access an item in storage and take it out to put in their inventory
  * this method will regulate putting the other item used in it and return 
  */ 
-void accessItemInStorage(vector<Item> items);
+void Shopkeep::accessItemInStorage(vector<Item> items){
+
+}
         
 
 
@@ -121,16 +190,22 @@ void accessItemInStorage(vector<Item> items);
  *      3: prints out the stats of encountered monsters using getMonsterStats()
  *      Anything else: player goes back to the tower and the floor they left off on
  */ 
-void displayMainShopMenu();
+void Shopkeep::displayMainShopMenu(){
+
+}
 /**
  * @returns a random shopkeep quote (also used by the displayMenu method)
  */ 
-string getQuote();
+string Shopkeep::getQuote(){
+
+}
 /**
  * if the player so desires, a file that contains the Monsters they've defeated 
  * and how many times they've defeated them will be loaded and printed to the console
  */ 
-void displayMonsterStats();
+void Shopkeep::displayMonsterStats(){
+
+}
 
 // methods for buying
 /**
@@ -138,4 +213,6 @@ void displayMonsterStats();
  * cost of the item. If the player doesn't have enough, the shopkeep will reject the purchase. If the player
  * has enough, they may buy it, and the item's playerHas variable is set to true (depending on the item)
  */ 
-void buyItem();
+void Shopkeep::buyItem(){
+
+}

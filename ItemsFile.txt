@@ -23,7 +23,7 @@
  *      hpBonus
 
 
-WEAPONS
+$ WEAPONS
 
 THREE BLIND MICE
 A large butcher's knife fueled by your hatred for dinner scraps. Alternatively, a classical favorite of the farmer's wife.
@@ -387,3 +387,13 @@ Ancient gauntlets that still seem to hold together, radiate a seemingly decaying
 
 
 $ POTIONS
+
+MINOR HEALTH POTION
+Heals 5 HP.
+//cost
+5
+
+HEALTH POTION
+Heals 10 HP.
+//cost
+10
