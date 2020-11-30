@@ -101,6 +101,5 @@ class Monster{
      * @param id the id number of the monster to find the
      * @returns the appearance of the monster
      */ 
-    string drawAppearance(int id);
 };
 #endif
