@@ -2,6 +2,7 @@
 // FILE FOR ITEMS CLASS
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "Item.h"
 
@@ -19,13 +20,66 @@ void loadQuotes(){
 }
 /**
  * loads the items (potions, weapons, and armors) from a given txt file into their respective vectors
- * The file will be separated by three categories: Weapons, Armor, and Potions. Each category is separated in the file via the character '$'
- * Then each item is separated by '#' at the end of it's stats
- * Stats go in this order:
- * NAME
+ * The file will be separated by three categories: Weapons, Armor, and Potions. 
  * 
+ * Each category is separated in the file via the character '$'
+ * Then each item is separated by '#' at the end of it's stats
+ * 
+ * Stats go in this order:
+ * For Weapons list:
+ *      NAME
+ *      DESCRIPTION
+ *      ID
+ *      cost
+ *      playerHas (this will be false by default)
+ *      attackBonus
+ *      damageBonus
+ * For Armor list:
+ *      name
+ *      description
+ *      ID
+ *      cost
+ *      playerHas
+ *      defenseBonus
+ * For Potion list:
+ *      name
+ *      descritpion
+ *      ID
+ *      cost
+ *      playerHas
+ *      hpBonus
  */ 
 void loadItems(){
+    // opens file
+    ifstream myFile;
+    myFile.open("ItemsFile.txt");
+
+    string line;
+    //char newSect = '$';
+    //char newItem = '#';
+    int itemCategory = -1;  // depicts the category of item to save to
+                            // 0 is weapons, 1 is armor, 2 is potions
+
+    // begins to loop through the file
+    while(getline(myFile, line)){
+        // if the first char of line is $ ...
+        if(line.at(0) == '$'){
+            // add a new vector row to shop
+            itemCategory++;
+            continue;
+        } // otherwise...
+        // decide which category it's loading and add the item to the vector
+        
+        if(itemCategory == 0){ // weapons category
+            
+            
+        }else if(itemCategory == 1){
+
+        }else if(itemCategory == 2){
+
+        }else{ /* something went wrong if it gets here */ }
+    }
+
 
 }
 

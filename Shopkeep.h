@@ -16,6 +16,7 @@ class Shopkeep{
         vector<string> quotes;  // vector array of shopkeep quotes
         vector<Item> weapons;   // vector array of weapon items
         vector<Item> armors;    // vector array of armor items
+        vector<Item> potions;   // vector array of potion items
         vector<vector<Item>> storage;   // vector of item vectors. There will be three rows and many columns
                                         // row 0 --> Weapons
                                         // row 1 --> Armor

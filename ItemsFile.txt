@@ -21,7 +21,7 @@
  *      ID
  *      cost
  *      hpBonus
- second test
+
 
 WEAPONS
 
