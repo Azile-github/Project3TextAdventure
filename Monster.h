@@ -98,7 +98,7 @@ class Monster{
      */ 
     int takeDamage(int damage); //returns remaining health
     /**
-     * @param id the id number of the monster to find the appearance file
+     * @param id the id number of the monster to find the
      * @returns the appearance of the monster
      */ 
     string drawAppearance(int id);
