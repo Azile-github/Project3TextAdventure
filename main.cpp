@@ -134,6 +134,78 @@ void writeFile(string fileName, string content, int line){// file name must incl
   }
 }
 
+int readTable(int tableNo, int lineNo){
+  string tableNoStr = to_string(tableNo);
+  string fileHead = "./res/monsters/monsterTable";
+  ifstream currentTable;
+  string line;
+  fileHead.append(tableNoStr);
+  fileHead.append(".dat");
+  currentTable.open(fileHead);
+  for(int i = 0; i < lineNo; i++){
+    getline(currentTable, line);
+  }
+  return stoi(line);
+}
+
+int chooseMonster(int floor){//returns a monster id to load
+  int randNum;
+  int tableNo;
+  int lineNo;
+  if(floor > 15){
+    randNum = (rand() % 10) + 1; //1 to 10
+    if(randNum > 5){//table 3
+      tableNo = 3;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+    if(randNum > 2){
+      tableNo = 2;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+    if(randNum > 0){
+      tableNo = 1;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+  }else if(floor > 8){
+    randNum = (rand() % 10) + 1; //1 to 10
+    if(randNum > 8){//table 3
+      tableNo = 3;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+    if(randNum > 4){
+      tableNo = 2;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+    if(randNum > 0){
+      tableNo = 1;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+  }else if(floor > 0){
+    randNum = (rand() % 10) + 1; //1 to 10
+    if(randNum > 9){//table 3
+      tableNo = 3;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+    if(randNum > 7){
+      tableNo = 2;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+    if(randNum > 0){
+      tableNo = 1;
+      lineNo = (rand() % 10) + 1;
+      return readTable(tableNo, lineNo);
+    }
+  }
+}
+
 int loadSave(){
 //loads the game's save then goes to gameplay
 }
