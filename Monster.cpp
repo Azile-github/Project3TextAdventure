@@ -76,31 +76,31 @@ void Monster::setRewardBase(int rewardBaseIn){
   rewardBase = rewardBaseIn;
 }
 
-string Monster::returnNameMonster(){
+string Monster::returnNameMonster() const{
   return nameMonster;
 }
 
-int Monster::returnTable(){
+int Monster::returnTable() const{
   return table;
 }
 
-int Monster::returnHitPoints(){
+int Monster::returnHitPoints() const{
   return hitPoints;
 }
 
-int Monster::returnDamageBase(){
+int Monster::returnDamageBase() const{
   return damageBase;
 }
 
-int Monster::returnStrength(){
+int Monster::returnStrength() const{
   return strength;
 }
 
-int Monster::returnDefense(){
+int Monster::returnDefense() const{
   return defense;
 }
 
-int Monster::returnRewardBase(){
+int Monster::returnRewardBase() const{
   return rewardBase;
 }
 
@@ -109,10 +109,10 @@ int Monster::takeDamage(int damage){
   return hitPoints;
 }
 
-int Monster::getAttackBonus(){
+int Monster::getAttackBonus() const{
 //takes the strength to return attack bonus
 }
 
-string Monster::drawAppearance(int id){
+string Monster::drawAppearance(int id) const{
   //This will grab the appearance of the monster from /res/art/ and print return it.
 }

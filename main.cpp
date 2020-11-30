@@ -209,8 +209,31 @@ int chooseMonster(int floor){//returns a monster id to load
 int loadSave(){
 //loads the game's save then goes to gameplay
 }
+void theGround(){
+  int menuChoice;
+  bool menuExit = false;
+  cout << string(50, '\n');
+  cout << "You stand at the base of the tower, what would you like to do?" << endl;
+  while(menuExit = false){
+    cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep." << endl;
+    cin >> menuChoice;
+    switch (menuChoice)
+    {
+    case 1:
+      /* code */
+      break;
+    case 2:
+      /* code */
+      break;
+    default:
+      cout << "Invalid input" << endl;
+      break;
+    }
+  }
+  
+}
 void generateFloor(){
-//loads a floor of the dungeon
+
 }
 void combat(){//loops until someone is dead
 
