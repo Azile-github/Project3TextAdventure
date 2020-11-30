@@ -1,0 +1,15 @@
+$ WEAPONS
+
+THREE BLIND MICE
+A large butcher's knife fueled by your hatred for dinner scraps. Alternatively, a classical favorite of the farmer's wife.
+w001
+//cost
+0
+1
+
+PIKE
+Think stick with a knife on it.
+w002
+//cost
+3
+1

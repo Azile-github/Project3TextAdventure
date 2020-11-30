@@ -27,7 +27,6 @@ $ WEAPONS
 
 THREE BLIND MICE
 A large butcher's knife fueled by your hatred for dinner scraps. Alternatively, a classical favorite of the farmer's wife.
-w001
 //cost
 0
 1
@@ -36,7 +35,6 @@ w001
 
 PIKE
 Think stick with a knife on it.
-w002
 //cost
 3
 1
@@ -45,7 +43,6 @@ w002
 
 YOUR SISTER'S SINGING VOICE
 It hurts my ears please stop you sing so much please all I want is some peace and quiet.
-w003
 //cost
 2
 3
@@ -54,7 +51,7 @@ w003
 
 FALLING GUILLOTINE
 A large cleaver, once used for executions, loosley fashioned to a sizable hilt. Two-handed, can swing in up to a 360 degree radius.
-w004
+
 //cost
 0
 8

@@ -53,9 +53,10 @@ void Shopkeep::loadQuotes(){
 void Shopkeep::loadItems(){
     // opens file
     ifstream myFile;
-    myFile.open("ItemsFile.txt");
+    //myFile.open("ItemsFile.txt");
+    myFile.open("itemtest.txt");
 
-    string line;
+    string line; // the placeholder for the line of the file
     //char newSect = '$';
     //char newItem = '#';
     int itemCategory = -1;  // depicts the category of item to save to
@@ -67,21 +68,25 @@ void Shopkeep::loadItems(){
 
     // begins to loop through the file
     while(getline(myFile, line)){
-        Weapon tempW;
-        Armor tempA;
-        Potion tempP;
-        int tempNum;
+        // Weapon tempW;
+        // Armor tempA;
+        // Potion tempP;
+        // int tempNum;
+
+         // if the line is empty, skip and continue
+        if(line.empty()){ continue; } 
+
         // if the first char of line is $ ...
         if(line.at(0) == '$'){
             // add a new vector row to shop
             itemCategory++;
             continue;
         } // otherwise...
-        // decide which category it's loading and add the item to the vector
         
-        if(line.empty()){ continue; } // if the line is empty, skip and continue
+        // decide which category it's loading and add the item to the vector    
 
-        if(itemCategory == 0){ // weapons category
+        if(itemCategory == 0){ 
+            // weapons category
 
             // set playerHas to default
             tempW.setPlayerHas(false);
@@ -110,7 +115,9 @@ void Shopkeep::loadItems(){
             // add to weapons vector
             weapons.push_back(tempW);
             
-        }else if(itemCategory == 1){ // armor category
+        }
+        else if(itemCategory == 1){ 
+            // armor category
 
             // set playerHas to default
             tempA.setPlayerHas(false);
@@ -135,15 +142,38 @@ void Shopkeep::loadItems(){
             // add to armor vector
             armors.push_back(tempA);
 
-        }else if(itemCategory == 2){ // potion category
+        }
+        else if(itemCategory == 2){ 
+            // potion category
 
-        
+            // set playerHas to default
+            tempP.setPlayerHas(false);
 
+            // set name
+            tempP.setItemName(line);
+            getline(myFile, line);
+
+            // set description
+            tempP.setDescription(line);
+            getline(myFile, line);
+
+            // set cost
+            tempNum = stoi(line);
+            tempP.setCost(tempNum);
+            getline(myFile, line);
+
+            // set health bonus
+            tempNum = stoi(line);
+            tempP.setHPBonus(tempNum);
+
+            // add to potions vector
+            potions.push_back(tempP);
 
         }else{ /* something went wrong if it gets here */ }
-    }
+    
+    }//endwhile
 
-
+    cout << "Finished loading items!\n";
 }
 
 // methods for misc interactions
