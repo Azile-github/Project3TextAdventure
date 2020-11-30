@@ -4,6 +4,9 @@
 #include <stdlib.h> 
 #include <vector>
 #include <string>
+#include <Game.h>
+#include <Player.h>
+#include <Monster.h>
 
 using namespace std;
 
@@ -209,7 +212,7 @@ int chooseMonster(int floor){//returns a monster id to load
 int loadSave(){
 //loads the game's save then goes to gameplay
 }
-void theGround(){
+void theGround(Player player){
   int menuChoice;
   bool menuExit = false;
   cout << string(50, '\n');
@@ -220,7 +223,9 @@ void theGround(){
     switch (menuChoice)
     {
     case 1:
-      /* code */
+      int currentFloor = 1;
+      generateFloor(currentFloor, player);
+
       break;
     case 2:
       /* code */
@@ -232,8 +237,11 @@ void theGround(){
   }
   
 }
-void generateFloor(){
-
+void generateFloor(int currentFloor, Player player){
+  int option;
+  option = (rand() % 100) + 1;
+  if(option > 25){
+  }
 }
 void combat(){//loops until someone is dead
 

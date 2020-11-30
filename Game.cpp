@@ -11,7 +11,7 @@ Game::Game(){
   monT1 = stoi(line.substr(26,2));
   getline(settings, line);
   monT2 = stoi(line.substr(26,2));
-  getline(settings, line)
+  getline(settings, line);
   monT3 = stoi(line.substr(26,2));
   cout << "t1 is " << monT1 << " t2 is " << monT2 << " t3 is " << monT3;
 }
