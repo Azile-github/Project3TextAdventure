@@ -24,8 +24,7 @@ Shopkeep::Shopkeep(){
 void Shopkeep::loadQuotes(){
     // opens file
     ifstream myFile;
-    //myFile.open("QuotesFile.txt");
-    myFile.open("quotetest.txt");
+    myFile.open("quotes.txt");
 
     string line; // the placeholder for the line of the file
 
@@ -272,7 +271,7 @@ void Shopkeep::accessItemInStorage(vector<Item> items){
  */ 
 void Shopkeep::displayMainShopMenu(){
     // retrieve quote
-    cout << getQuote() << "\n";
+    cout << "\"" << getQuote() << "\""  << "\n";
 
     string input;
     // display options
@@ -283,17 +282,18 @@ void Shopkeep::displayMainShopMenu(){
 
     if(input.compare("1") == 0){
         // Open shop menu
-
-
+        shop();
 
     }else if(input.compare("2") == 0){
         // Open Storage menu
     }else if(input.compare("3") == 0){
         // prints out the stats of encountered monsters using getMonsterStats()
+
     }else if(input.compare("4") == 0){
         // triggers the exit menu
     }else{
         // player returns to tower
+        // nothing happens
     }
 
 }

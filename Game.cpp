@@ -38,3 +38,7 @@ int Game::highScoreSort(){
   //for the title
   //sorts the highscores gotten to reread to player
 }
+
+void Game::introduction(){
+  // for the introduction and explanation of the game. Given by the shopkeeper
+}
