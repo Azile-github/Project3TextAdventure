@@ -12,7 +12,6 @@ Player::Player(string nameIn, int maxHPIn, int strengthIn, int defenseIn, int go
   defense = defenseIn;
   gold = goldIn;
   highestFloor = highestFloorIn;
-  currentFloor = 0;
 }
 
 string Player::getName(){
