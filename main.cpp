@@ -10,7 +10,22 @@
 
 using namespace std;
 
-int loadSave();
+Player loadSave();
+void endGame();
+int highscoreCalculation();
+int findHighscore();
+void titleInterface();
+void newGame();
+int readTable(int tableNo, int lineNo);
+int chooseMonster(int floor);
+Player loadSave();
+void theGround(Player player);
+void generateFloor(int currentFloor, Player player);
+void saveGame();
+int rewardCalc();
+void endGame();
+int highscoreCalculation(Player player);
+void saveScare(int score);
 
 int main(){
   bool loadState = false;
@@ -50,15 +65,18 @@ int main(){
         cout << "Error: Shop file failure! Please redownload the game!" << endl;
         return -1;
       }
+    }else{
+      loadState = true;
     }
   }
+  titleInterface();
 }
 
 int findHighscore(){
 //this should be a sorting algorithm that runs at the start to pass the highscore from highscore.dat to the titlescreen.
 }
 
-void titleInterface(int highScore){//going to be the main title with some ascii art and options
+void titleInterface(){//going to be the main title with some ascii art and options
 //load game
 //new game
 //exit
@@ -87,7 +105,7 @@ void titleInterface(int highScore){//going to be the main title with some ascii 
                                                                           :          _/
                                                                           :    _..-``
                                                                            l--``)" << endl;
-    cout << "Current highscore is" << endl;
+    cout << "Current highscore is" << findHighscore() << endl;
     cin >> titleSelect;
     switch (titleSelect)
     {
@@ -125,16 +143,6 @@ void newGame(){
   cout << "In our town is, the spire. The spire is an infinitely tall tower of challenges for adventurers. We wish you luck on your adventure." << endl;
 
 
-}
-
-void writeFile(string fileName, string content, int line){// file name must include location if not at root
-  vector<string> contents;
-  ifstream currentFile;
-  string lineConent;
-  currentFile.open(fileName);
-  while(getline(currentFile, lineConent)){
-    contents.push_back(lineConent);
-  }
 }
 
 int readTable(int tableNo, int lineNo){
@@ -209,7 +217,7 @@ int chooseMonster(int floor){//returns a monster id to load
   }
 }
 
-int loadSave(){
+Player loadSave(){
 //loads the game's save then goes to gameplay
 }
 void theGround(Player player){
@@ -218,7 +226,7 @@ void theGround(Player player){
   cout << string(50, '\n');
   cout << "You stand at the base of the tower, what would you like to do?" << endl;
   while(menuExit = false){
-    cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep." << endl;
+    cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep, and 3 to save and quit." << endl;
     cin >> menuChoice;
     switch (menuChoice)
     {
@@ -229,6 +237,9 @@ void theGround(Player player){
       break;
     case 2:
       /* code */
+      break;
+    case 3:
+
       break;
     default:
       cout << "Invalid input" << endl;
@@ -258,9 +269,39 @@ int attackMenu(){
 //ect
 }
 void saveGame(){
-//writes game info to the save.dat file
+//writes game info to the save.dat file then loads endGame
 }
 //this function takes the floor and monster's table to generate the gold
 int rewardCalc(){
 //calculates the gold reward from monsters
+}
+
+void endGame(){
+  //this function will terminate the game.
+}
+
+int highscoreCalculation(Player player){
+  int gold = player.getGold();
+  int highestFloor = player.getHighestFloor();
+  int score = (gold * 1.2) + (highestFloor * 12.7) + 1;
+  return score;
+}
+
+void saveScore(int score){
+  string scoreStr = to_string(score);
+  string line;
+  vector<string> scores;
+  ifstream currentFile;
+  ofstream currentFileW;
+  currentFile.open("./save/highscore.dat");
+  while(getline(currentFile, line)){
+    scores.push_back(line);
+  }
+  currentFile.close();
+  scores.push_back(scoreStr);
+  currentFileW.open("./save/highscore.dat");
+  for (int i = 0; i < scores.size(); i++){
+    currentFileW << scores.at(i) << endl;
+  }
+  
 }
