@@ -8,15 +8,16 @@
 #include "Item.h"
 #include "Weapon.h"
 #include "Potion.h"
+#include "Armor.h"
 
 using namespace std;
 
 class Shopkeep{
     private: 
         vector<string> quotes;  // vector array of shopkeep quotes
-        vector<Item> weapons;   // vector array of weapon items
-        vector<Item> armors;    // vector array of armor items
-        vector<Item> potions;   // vector array of potion items
+        vector<Weapon> weapons;   // vector array of weapon items
+        vector<Armor> armors;    // vector array of armor items
+        vector<Potion> potions;   // vector array of potion items
         vector<vector<Item>> storage;   // vector of item vectors. There will be three rows and many columns
                                         // row 0 --> Weapons
                                         // row 1 --> Armor
@@ -24,6 +25,7 @@ class Shopkeep{
         
 
     public: 
+        Shopkeep();
         // methods for loading the files
         /**
          * loads the shopkeep quotes from the txt file into the quotes vector
@@ -33,6 +35,7 @@ class Shopkeep{
          * loads the items (potions, weapons, and armors) from a given txt file into their respective vectors
          */ 
         void loadItems();
+        void displayShop();
 
         // methods for misc interactions
         /**
@@ -52,6 +55,11 @@ class Shopkeep{
          * player is prompted to 
          */ 
         void accessItemInStorage(vector<Item> items);
+        /**
+         * if the player so desires, a file that contains the Monsters they've defeated 
+         * and how many times they've defeated them will be loaded and printed to the console
+         */ 
+        void displayMonsterStats();
         
 
 
@@ -74,11 +82,7 @@ class Shopkeep{
          * returns a random shopkeep quote (also used by the displayMenu method)
          */ 
         string getQuote();
-        /**
-         * if the player so desires, a file that contains the Monsters they've defeated 
-         * and how many times they've defeated them will be loaded and printed to the console
-         */ 
-        void displayMonsterStats();
+        
 
         // methods for buying
         /**
@@ -87,6 +91,11 @@ class Shopkeep{
          * has enough, they may buy it, and the item's playerHas variable is set to true (depending on the item)
          */ 
         void buyItem();
+
+        // vector<Item> getWeapons() const;
+        // vector<Item> getArmors() const;
+        // vector<Item> getW() const;
+
 
 };
 #endif

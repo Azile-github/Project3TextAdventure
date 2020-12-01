@@ -364,7 +364,6 @@ Some small noise cancelling earplugs.
 
 THE IMMOVABLE OBJECT
 An ancient, heavy breastplate, seemingly molded in pure ice. (Although, no amount of heat seems to be able to melt such material.)
-
 //cost
 8
 
@@ -373,9 +372,7 @@ An ancient, heavy breastplate, seemingly molded in pure ice. (Although, no amoun
 TURTLE SHELL OF QUICKENING
 Armor built of turtle carcasses, and enchanted to make turtle noises whenever you attack.
 //cost
-5
-
-# 
+5 
 
 GRIPS OF THE DECREPIT KING
 Ancient gauntlets that still seem to hold together, radiate a seemingly decaying aura. You shake out the gauntlets and hear something rattle. "What's in here?" you ask. "The fingerbones I couldn't remove when I found the body," the shopkeep replies.
