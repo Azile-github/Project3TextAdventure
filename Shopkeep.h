@@ -14,10 +14,10 @@ using namespace std;
 
 class Shopkeep{
     private: 
-        vector<string> quotes;  // vector array of shopkeep quotes
-        vector<Weapon> weapons;   // vector array of weapon items
-        vector<Armor> armors;    // vector array of armor items
-        vector<Potion> potions;   // vector array of potion items
+        vector<string> quotes;      // vector array of shopkeep quotes
+        vector<Weapon> weapons;     // vector array of weapon items
+        vector<Armor> armors;       // vector array of armor items
+        vector<Potion> potions;     // vector array of potion items
         vector<vector<Item>> storage;   // vector of item vectors. There will be three rows and many columns
                                         // row 0 --> Weapons
                                         // row 1 --> Armor
@@ -80,7 +80,7 @@ class Shopkeep{
          */ 
         void displayMainShopMenu();
         /**
-         * returns a random shopkeep quote (also used by the displayMenu method)
+         * @returns a random shopkeep quote (also used by the displayMenu method)
          */ 
         string getQuote();
 
@@ -94,6 +94,16 @@ class Shopkeep{
          * has enough, they may buy it, and the item's playerHas variable is set to true (depending on the item)
          */ 
         void buyItem();
+
+        /**
+         * If player wishes to save game, this method will be called on and will load everything into the current game items file
+         */
+        void saveItemStatus();
+
+        /**
+         * if reloading a saved game...
+         */
+
 
         // void displayWeapons();
         // void displayArmor();

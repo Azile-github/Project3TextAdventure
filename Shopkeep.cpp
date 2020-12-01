@@ -97,12 +97,9 @@ void Shopkeep::loadItems(){
         } // otherwise...
         
         // decide which category it's loading and add the item to the vector    
-        cout << "Starting a new item...";
-
+        
         if(itemCategory == 0){ 
             // weapons category
-            cout << "weapon\n";
-            cout << "line is: " << line << "\n";
 
             // set playerHas to default
             tempW.setPlayerHas(false);
@@ -111,43 +108,34 @@ void Shopkeep::loadItems(){
             tempW.setItemName(line);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
+             
 
             // set description
             tempW.setDescription(line);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
+             
 
             // set cost
             tempNum = stoi(line);
             tempW.setCost(tempNum);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
-
             // set attack bonus
             tempNum = stoi(line);
             tempW.setWeaponAttackBonus(tempNum);            
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
-
             // set damage bonus
             tempNum = stoi(line);
             tempW.setWeaponDamageBonus(tempNum);
-
-            cout << "\tAdding to vector\n";
 
             // add to weapons vector
             weapons.push_back(tempW);
             
         }
         else if(itemCategory == 1){ 
-            cout << "armor\n";
             // armor category
-
-            cout << "line is: " << line << "\n";
 
             // set playerHas to default
             tempA.setPlayerHas(false);
@@ -156,64 +144,45 @@ void Shopkeep::loadItems(){
             tempA.setItemName(line);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
-
             // set description
             tempA.setDescription(line);
             getline(myFile, line);
-
-            cout << "line is: " << line << "\n";
 
             // set cost
             tempNum = stoi(line);
             tempA.setCost(tempNum);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
-
             // set defense bonus
             tempNum = stoi(line);
             tempA.setDefBonus(tempNum);
-            
-            cout << "\tAdding to vector\n";
 
             // add to armor vector
             armors.push_back(tempA);
 
         }
         else if(itemCategory == 2){
-            cout << "potion\n"; 
             // potion category
 
             // set playerHas to default
             tempP.setPlayerHas(false);
 
-            cout << "line is: " << line << "\n";
-
             // set name
             tempP.setItemName(line);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
-
             // set description
             tempP.setDescription(line);
             getline(myFile, line);
-
-            cout << "line is: " << line << "\n";
 
             // set cost
             tempNum = stoi(line);
             tempP.setCost(tempNum);
             getline(myFile, line);
 
-            cout << "line is: " << line << "\n";
-
             // set health bonus
             tempNum = stoi(line);
             tempP.setHPBonus(tempNum);
-
-            cout << "\tAdding to vector\n";
 
             // add to potions vector
             potions.push_back(tempP);
@@ -222,7 +191,6 @@ void Shopkeep::loadItems(){
     
     }//endwhile
 
-    cout << "Finished loading items!\n";
 }
 
 // methods for misc interactions
@@ -435,13 +403,3 @@ void shop(){
 // void Shopkeep::displayWeapons();
 // void Shopkeep::displayArmor();
 // void Shopkeep::displayPotions();
-
-
-int main(){
-    Shopkeep s;
-    s.loadItems();
-    s.displayShop();
-
-
-    return 0;
-}

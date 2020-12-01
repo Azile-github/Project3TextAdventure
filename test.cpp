@@ -47,7 +47,7 @@ void saveScore(int score){
   vector<string> scores;
   ifstream currentFile;
   ofstream currentFileW;
-  currentFile.open("./save/highscore.dat");
+  currentFile.open("./save/highscore.dat"); 
   while(getline(currentFile, line)){
     scores.push_back(line);
   }

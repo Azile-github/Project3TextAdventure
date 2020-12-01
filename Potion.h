@@ -1,6 +1,7 @@
 //Isabelle Hoff + Skyla Gyimesi
 /**
  * OWNER: Isabelle Hoff + Skyla Gyimesi
+ * DESCRIPTION: 
  * 
  */ 
 #ifndef POTION_H

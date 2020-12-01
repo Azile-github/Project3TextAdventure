@@ -5,7 +5,7 @@
 Game::Game(){
   ifstream settings;
   string line;
-  settings.open(./save/settings.txt);
+  settings.open("./save/settings.txt");
   getline(settings, line);
   getline(settings, line);
   monT1 = stoi(line.substr(26,2));
