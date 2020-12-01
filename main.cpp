@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Player loadSave();
+void loadSave();
 void endGame();
 int highscoreCalculation();
 int findHighscore();
@@ -19,7 +19,6 @@ void titleInterface();
 void newGame();
 int readTable(int tableNo, int lineNo);
 int chooseMonster(int floor);
-Player loadSave();
 void theGround(Player player);
 void generateFloor(int currentFloor, Player player);
 void saveGame();
@@ -111,15 +110,15 @@ void titleInterface(){//going to be the main title with some ascii art and optio
     switch (titleSelect)
     {
     case 1:
-      /* code */
+      newGame();
       break;
 
     case 2:
-      /* code */
+      loadSave();
       break;
 
     case 3:
-      /* code */
+      endGame();
       break;
 
     default:
@@ -218,8 +217,10 @@ int chooseMonster(int floor){//returns a monster id to load
   }
 }
 
-Player loadSave(){
+void loadSave(){
 //loads the game's save then goes to gameplay
+  Player player; //fill with params
+  theGround(player);
 }
 void theGround(Player player){
   int menuChoice;
