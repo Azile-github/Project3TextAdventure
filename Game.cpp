@@ -30,7 +30,7 @@ Game::Game(Player playerIn){
   theGround();
 }
 
-int Game::gameOver(){
+void Game::gameOver(){
   //ends the game to title returns -1
 }
 
@@ -136,6 +136,7 @@ void Game::theGround(){
   int menuChoice;
   bool menuExit = false;
   currentfloor = 0;
+  player.setMaxHealth(10 + player.getHighestFloor() * 2);
   player.setHealth(player.getMaxHealth()); 
   cout << string(50, '\n');
   cout << "You stand at the base of the tower, what would you like to do?" << endl;
@@ -148,7 +149,7 @@ void Game::theGround(){
 
       break;
     case 2:
-      /* code */
+      /* code */// needs to go to shopkeep
       break;
     case 3:
 
@@ -244,4 +245,36 @@ int Game::readTable(int tableNo, int lineNo){
     getline(currentTable, line);
   }
   return stoi(line);
+}
+
+void Game::saveGame(){
+  //writes player save to save.dat
+  saveScore(highscoreCalculation());
+  gameOver();
+}
+
+int Game::highscoreCalculation(){
+  int gold = player.getGold();
+  int highestFloor = player.getHighestFloor();
+  int score = (gold * 1.2) + (highestFloor * 12.7) + 1;
+  return score;
+}
+
+void Game::saveScore(int score){
+  string scoreStr = to_string(score);
+  string line;
+  vector<string> scores;
+  ifstream currentFile;
+  ofstream currentFileW;
+  currentFile.open("./save/highscore.dat");
+  while(getline(currentFile, line)){
+    scores.push_back(line);
+  }
+  currentFile.close();
+  scores.push_back(scoreStr);
+  currentFileW.open("./save/highscore.dat");
+  for (int i = 0; i < scores.size(); i++){
+    currentFileW << scores.at(i) << endl;
+  }
+  
 }

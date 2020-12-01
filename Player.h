@@ -9,7 +9,7 @@ using namespace std;
 
 class Player{
   private:
-  string name;
+    string name;
     int maxHP;
     int currentHP;
     int strength;
@@ -23,7 +23,7 @@ class Player{
     Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
 
     string getName();
-    Item getItem(int slot)
+    Item getItem(int slot);
     void printStats();
     int getMaxHealth();
     int getHealth();
@@ -34,6 +34,7 @@ class Player{
     int getHighestFloor();
 
     void setHealth(int hpIn);
+    void setMaxHealth(int hpIn);
     void removeHealth(int damage);//input how much health they are losing not how much they will have
     void setStrength(int strIn);
     void setDefense(int defIn);

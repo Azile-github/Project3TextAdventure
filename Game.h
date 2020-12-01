@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "Player.h"
+#include <vector>
 
 using namespace std;
 
@@ -20,18 +21,17 @@ class Game{
     Game();
     Game(Player playerIn);
     void loadFloor(int floor);
-    int gameOver();
-    int attackMenu();
-    int highScoreSort();
+    void gameOver();
     int chooseMonster();
     int readTable(int tableNo, int lineNo);
     void exitGame();
     void saveGame();
-    void introduction();
     void combat(int monsterId);
     void postCombat();
     void death();
     void theGround();
     void generateFloor();
+    int highscoreCalculation();
+    void saveScore(int score);
 };
 #endif

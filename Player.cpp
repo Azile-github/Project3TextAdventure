@@ -58,6 +58,10 @@ void Player::setHealth(int hpIn){
   currentHP = hpIn;
 }
 
+void Player::setMaxHealth(int hpIn){
+  maxHP = hpIn;
+}
+
 void Player::removeHealth(int damage){
   currentHP = currentHP - damage;
 }

@@ -74,6 +74,8 @@ int main(){
 
 int findHighscore(){
 //this should be a sorting algorithm that runs at the start to pass the highscore from highscore.dat to the titlescreen.
+x
+//sorting algorithm goes here
 }
 
 void titleInterface(){//going to be the main title with some ascii art and options
@@ -143,7 +145,8 @@ void newGame(){
   cout << "Wonderful, Wonderful... Welcome to the town of Rathamir, many adventurers like yourself have tried our challenge." << endl;
   cout << "In our town is, the spire. The spire is an infinitely tall tower of challenges for adventurers. We wish you luck on your adventure." << endl;
   writeSave.open("./save/save.dat");
-
+  x
+  // needs to write to file
 }
 void loadSave(){//ends in calling Game game(player);
   string name;
@@ -157,44 +160,6 @@ void loadSave(){//ends in calling Game game(player);
   int highestFloor;
   Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff
   //(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
-}
-
-void saveGame(){
-//writes game info to the save.dat file then loads endGame
-}
-//this function takes the floor and monster's table to generate the gold
-int rewardCalc(){
-//calculates the gold reward from monsters
-}
-
-void endGame(){
-  cout << string(50,'\n');
-  cout << "Game ending... Goodbye!" << endl;
-  exit(0);
-}
-
-int highscoreCalculation(Player player){
-  int gold = player.getGold();
-  int highestFloor = player.getHighestFloor();
-  int score = (gold * 1.2) + (highestFloor * 12.7) + 1;
-  return score;
-}
-
-void saveScore(int score){
-  string scoreStr = to_string(score);
-  string line;
-  vector<string> scores;
-  ifstream currentFile;
-  ofstream currentFileW;
-  currentFile.open("./save/highscore.dat");
-  while(getline(currentFile, line)){
-    scores.push_back(line);
-  }
-  currentFile.close();
-  scores.push_back(scoreStr);
-  currentFileW.open("./save/highscore.dat");
-  for (int i = 0; i < scores.size(); i++){
-    currentFileW << scores.at(i) << endl;
-  }
-  
+  x
+  needs to read from file
 }
