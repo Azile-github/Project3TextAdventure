@@ -4,14 +4,14 @@
 Player::Player(){
 
 }
-Player::Player(string nameIn, int maxHPIn, int strengthIn, int defenseIn){
+Player::Player(string nameIn, int maxHPIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn){
   name = nameIn;
   maxHP = maxHPIn;
   currentHP = maxHPIn;
   strength = strengthIn;
   defense = defenseIn;
-  gold = 0;
-  highestFloor = 0;
+  gold = goldIn;
+  highestFloor = highestFloorIn;
 }
 
 string Player::getName(){
@@ -40,7 +40,7 @@ int Player::getDefense(){
 }
 
 int Player::getAttackBonus(){
-  // bonus = strength + weapon atk mod
+  return strength + items[0].attack();
 }
 int Player::getGold(){
   return gold;

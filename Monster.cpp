@@ -45,7 +45,13 @@ Monster::Monster(int idIn){
       rewardBaseIn = stoi(line);
     }
   }
-  //Functions that set the rest of the stats gotten from this
+  setName(mName);
+  setTable(tableIn);
+  setHP(hp);
+  setDamageBase(dmg);
+  setStrength(str);
+  setDefense(def);
+  setRewardBase(rewardBaseIn);
 }
 
 void Monster::setName(string nameIn){

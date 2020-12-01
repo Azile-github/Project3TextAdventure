@@ -20,7 +20,7 @@ class Player{
     int highestFloor;
   public:
     Player();
-    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn);
+    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
 
     string getName();
     void printStats();
