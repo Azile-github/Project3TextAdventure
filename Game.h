@@ -23,5 +23,6 @@ class Game{
     int highScoreSort();
     void exitGame();
     void saveGame();
+    void introduction();
 };
 #endif
