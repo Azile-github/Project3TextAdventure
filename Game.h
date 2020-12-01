@@ -24,5 +24,6 @@ class Game{
     void exitGame();
     void saveGame();
     void introduction();
+    void combat(Player player, int monsterId);
 };
 #endif

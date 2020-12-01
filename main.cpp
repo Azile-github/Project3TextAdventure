@@ -159,7 +159,7 @@ int readTable(int tableNo, int lineNo){
   return stoi(line);
 }
 
-int chooseMonster(int floor){//returns a monster id to load
+int chooseMonster(int floor){//returns a monster id to load for floor generation
   int randNum;
   int tableNo;
   int lineNo;
@@ -255,13 +255,6 @@ void generateFloor(int currentFloor, Player player){
   option = (rand() % 100) + 1;
   if(option > 25){
   }
-}
-void combat(){//loops until someone is dead
-
-}
-
-int monsterAttack(){
-//details for monster making an attack
 }
 
 int attackMenu(){

@@ -18,9 +18,10 @@ class Player{
     int quantity[4];
     Item items[4];
     int highestFloor;
+    int currentFloor;
   public:
     Player();
-    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn);
+    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
 
     string getName();
     void printStats();
