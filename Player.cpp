@@ -18,6 +18,10 @@ string Player::getName(){
   return name;
 }
 
+Item Player::getItem(int slot){
+  return items[slot];
+}
+
 void Player::printStats(){
   //prints a nice little ascii box with the player's stats inside
   ghfjkul

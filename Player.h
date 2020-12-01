@@ -23,6 +23,7 @@ class Player{
     Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
 
     string getName();
+    Item getItem(int slot)
     void printStats();
     int getMaxHealth();
     int getHealth();

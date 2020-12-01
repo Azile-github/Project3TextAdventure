@@ -61,16 +61,16 @@ void Game::combat(int monsterId){
       {
       case 1:
         attackRoll = ((rand() % 20) + 1) + player.getAttackBonus();
-        cout << "You swing with a " << player.item[0].getName() << " for " << attackRoll << "." << endl;
+        cout << "You swing with a " << player.getItem(0).getItemName() << " for " << attackRoll << "." << endl;
         if(attackRoll >= monster.returnDefense()){
-          cout << "You hit the " << monster.returnNameMonster() << " for " << player.getStrength() + player.item[0].getDamage() << endl;
+          cout << "You hit the " << monster.returnNameMonster() << " for " << player.getAttackBonus() << endl;
         }else{
           cout << "You missed the " << monster.returnNameMonster() << endl;
         }
 
         break;
       case 2:
-
+        // help oh god oh fuck use item in combat
         break;
 
       default:
@@ -118,7 +118,7 @@ void Game::postCombat(){
     generateFloor();
     break;
   case 2:
-    //help i dont know about items
+    //help i dont know about items out of combat
     break;
   case 3:
     theGround();
