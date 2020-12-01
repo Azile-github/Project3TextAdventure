@@ -39,7 +39,7 @@ int Player::getDefense(){
 }
 
 int Player::getAttackBonus(){
-  // bonus = strength + weapon atk mod
+  return strength + items[0].attack();
 }
 int Player::getGold(){
   return gold;
