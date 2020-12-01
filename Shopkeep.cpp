@@ -77,17 +77,15 @@ void Shopkeep::loadItems(){
     //char newItem = '#';
     int itemCategory = -1;  // depicts the category of item to save to
                             // 0 is weapons, 1 is armor, 2 is potions
-    Weapon tempW;
-    Armor tempA;
-    Potion tempP;
-    int tempNum;
+    
+    Weapon tempW;   // temp variable for Weapon object
+    Armor tempA;    // temp variable for armor object
+    Potion tempP;   // temp variable for potion object
+    int tempNum;    // temp variables for integers
 
     // begins to loop through the file
     while(getline(myFile, line)){
-        // Weapon tempW;
-        // Armor tempA;
-        // Potion tempP;
-        // int tempNum;
+
 
          // if the line is empty, skip and continue
         if(line.empty()){ continue; } 
@@ -273,15 +271,37 @@ void Shopkeep::accessItemInStorage(vector<Item> items){
  *      Anything else: player goes back to the tower and the floor they left off on
  */ 
 void Shopkeep::displayMainShopMenu(){
+    // retrieve quote
+    cout << getQuote() << "\n";
+
+    string input;
+    // display options
+    cout << "What would you like to do? (Enter a number.)\n";
+    cout << "\t1. Shop \n\t2. Access Storage \n\t3. Monster Stats \n\t4. Leave Game\n\tPress anything else to travel back to the tower\n";
+
+    getline(cin, input);
+
+    if(input.compare("1") == 0){
+        // Open shop menu
+
+
+
+    }else if(input.compare("2") == 0){
+        // Open Storage menu
+    }else if(input.compare("3") == 0){
+        // prints out the stats of encountered monsters using getMonsterStats()
+    }else if(input.compare("4") == 0){
+        // triggers the exit menu
+    }else{
+        // player returns to tower
+    }
 
 }
 /**
  * @returns a random shopkeep quote (also used by the displayMenu method)
  */ 
 string Shopkeep::getQuote(){
-
-    return "h";
-
+    return quotes.at(rand() % quotes.size()); // retrieves the quote at a random index number from 0 to the quotes vector size
 }
 /**
  * if the player so desires, a file that contains the Monsters they've defeated 
@@ -301,7 +321,7 @@ void Shopkeep::buyItem(){
 
 }
 
-void Shopkeep::displayShop(){
+/*
     //display weapons
     cout << "WEAPONS\n";
     for(Weapon w : weapons){
@@ -335,7 +355,86 @@ void Shopkeep::displayShop(){
     //display armor
 
     //display potions
+*/
+
+void Shopkeep::displayShop(){
+
 }
+
+/** 
+ * displays items in the shop that do not have playerHas set to true
+ * 
+ * if a number is entered that is not 0, 1, or 2, then an error message is printed.
+ * 
+ * ERROR: Invalid numerical parameter input. A number outside this function's defined range of 0 to 2 was given.
+ *      
+ * @param type the integer value that correlates to the type of item that is being printed. 
+ *      0 for weapons
+ *      1 for armors
+ *      2 for potions
+ */ 
+void Shopkeep::displayShop(int type){
+    int index = -1; // allows easy access into the vector by the player to request an item to buy
+
+    if(type == 0){
+        cout << "\"Beware the sharp edges!\" says the shopkeep.\n\n\t\t\t~*~ WEAPON MENU ~*~\n\n";
+        //display available weapons
+        for(Weapon temp : weapons){
+            //if player does not have the item...
+            index++;
+            if(!temp.doesPlayerHave()){
+                // print out its information
+                cout << "\tITEM #" << index << "\n" << temp.getItemName() << "\n";
+                cout << "Description:\n\t" << temp.getDescription() << "\n";
+                cout << "Atk Bonus: " << temp.getWeaponAttackBonus() << "\n";
+                cout << "Dmg Bonus: " << temp.getWeaponDamageBonus() << "\n";
+                cout << "Cost: " << temp.getCost() << " coins\n\n";
+            }
+            // otherwise do nothing
+        }// endfor-each
+    }
+    else if(type == 1){
+
+        cout << "\"A classic way to prevent wounds,\" says the shopkeep.\n\n\t\t\t~*~ ARMOR MENU ~*~\n\n";
+        //display available armors
+
+        for(Armor temp : armors){
+            index++;
+            //if player does not have the item...
+            if(!temp.doesPlayerHave()){
+                // print out its information
+                cout << "\tITEM #" << index << "\n" << temp.getItemName() << "\n";
+                cout << "Description:\n\t" << temp.getDescription() << "\n";
+                cout << "Def Bonus: " << temp.getDefBonus() << "\n";
+                cout << "Cost: " << temp.getCost() << " coins\n\n";
+            }
+            // otherwise do nothing
+        }// endfor-each
+
+    }
+    else if(type == 2){
+        cout << "\"Need some health? Got a wound? I got everything you need!\" cheers the shopkeep.\n\n\t\t\t~*~ POTION MENU ~*~\n\n";
+        //display potions. Doesn't matter if playerHas is true or false
+        for(Potion temp : potions){
+            index++;
+            // print out its information
+            cout << "\tITEM #" << index << "\n" << temp.getItemName() << "\n";
+            cout << "Description:\n\t" << temp.getDescription() << "\n";
+            cout << "HP Bonus: " << temp.getHPBonus() << "\n";
+            cout << "Cost: " << temp.getCost() << " coins\n\n";
+        }// endfor-each
+    }
+    else{ cout << "ERROR: Invalid numerical parameter input. A number outside this function's defined range of 0 to 2 was given.\n"; } // error statement
+
+}
+
+void shop(){
+
+}
+
+// void Shopkeep::displayWeapons();
+// void Shopkeep::displayArmor();
+// void Shopkeep::displayPotions();
 
 
 int main(){

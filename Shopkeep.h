@@ -36,6 +36,7 @@ class Shopkeep{
          */ 
         void loadItems();
         void displayShop();
+        void displayShop(int type);
 
         // methods for misc interactions
         /**
@@ -82,6 +83,8 @@ class Shopkeep{
          * returns a random shopkeep quote (also used by the displayMenu method)
          */ 
         string getQuote();
+
+        void shop();
         
 
         // methods for buying
@@ -91,6 +94,10 @@ class Shopkeep{
          * has enough, they may buy it, and the item's playerHas variable is set to true (depending on the item)
          */ 
         void buyItem();
+
+        // void displayWeapons();
+        // void displayArmor();
+        // void displayPotions();
 
         // vector<Item> getWeapons() const;
         // vector<Item> getArmors() const;

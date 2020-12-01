@@ -21,5 +21,7 @@ class Game{
     int gameOver();
     int attackMenu();
     int highScoreSort();
+    void exitGame();
+    void saveGame();
 };
 #endif
