@@ -7,6 +7,7 @@
 #include <Game.h>
 #include <Player.h>
 #include <Monster.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -277,7 +278,9 @@ int rewardCalc(){
 }
 
 void endGame(){
-  //this function will terminate the game.
+  cout << string(50,'\n');
+  cout << "Game ending... Goodbye!" << endl;
+  exit(0);
 }
 
 int highscoreCalculation(Player player){
