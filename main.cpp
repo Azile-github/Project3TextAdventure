@@ -129,6 +129,7 @@ void titleInterface(){//going to be the main title with some ascii art and optio
 }
 
 void newGame(){
+  ofstream writeSave;
   string name;
   string option = "n";
   cout << string(50, '\n');
@@ -141,128 +142,23 @@ void newGame(){
   }
   cout << "Wonderful, Wonderful... Welcome to the town of Rathamir, many adventurers like yourself have tried our challenge." << endl;
   cout << "In our town is, the spire. The spire is an infinitely tall tower of challenges for adventurers. We wish you luck on your adventure." << endl;
-
+  writeSave.open("./save/save.dat");
 
 }
-
-int readTable(int tableNo, int lineNo){
-  string tableNoStr = to_string(tableNo);
-  string fileHead = "./res/monsters/monsterTable";
-  ifstream currentTable;
-  string line;
-  fileHead.append(tableNoStr);
-  fileHead.append(".dat");
-  currentTable.open(fileHead);
-  for(int i = 0; i < lineNo; i++){
-    getline(currentTable, line);
-  }
-  return stoi(line);
+void loadSave(){//ends in calling Game game(player);
+  string name;
+  int maxHP;
+  int currentHP;
+  int strength;
+  int defense;
+  int gold;
+  int quantity[4];
+  Item items[4];
+  int highestFloor;
+  Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff
+  //(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
 }
 
-int chooseMonster(int floor){//returns a monster id to load for floor generation
-  int randNum;
-  int tableNo;
-  int lineNo;
-  if(floor > 15){
-    randNum = (rand() % 10) + 1; //1 to 10
-    if(randNum > 5){//table 3
-      tableNo = 3;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-    if(randNum > 2){
-      tableNo = 2;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-    if(randNum > 0){
-      tableNo = 1;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-  }else if(floor > 8){
-    randNum = (rand() % 10) + 1; //1 to 10
-    if(randNum > 8){//table 3
-      tableNo = 3;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-    if(randNum > 4){
-      tableNo = 2;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-    if(randNum > 0){
-      tableNo = 1;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-  }else if(floor > 0){
-    randNum = (rand() % 10) + 1; //1 to 10
-    if(randNum > 9){//table 3
-      tableNo = 3;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-    if(randNum > 7){
-      tableNo = 2;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-    if(randNum > 0){
-      tableNo = 1;
-      lineNo = (rand() % 10) + 1;
-      return readTable(tableNo, lineNo);
-    }
-  }
-}
-
-void loadSave(){
-//loads the game's save then goes to gameplay
-  Player player; //fill with params
-  theGround(player);
-}
-void theGround(Player player){
-  int menuChoice;
-  bool menuExit = false;
-  cout << string(50, '\n');
-  cout << "You stand at the base of the tower, what would you like to do?" << endl;
-  while(menuExit = false){
-    cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep, and 3 to save and quit." << endl;
-    cin >> menuChoice;
-    switch (menuChoice)
-    {
-    case 1:
-      int currentFloor = 1;
-      generateFloor(currentFloor, player);
-
-      break;
-    case 2:
-      /* code */
-      break;
-    case 3:
-
-      break;
-    default:
-      cout << "Invalid input" << endl;
-      break;
-    }
-  }
-  
-}
-void generateFloor(int currentFloor, Player player){
-  int option;
-  option = (rand() % 100) + 1;
-  if(option > 25){
-  }
-}
-
-int attackMenu(){
-//player interface for their turn in combat
-//1 attack
-//2 potion
-//ect
-}
 void saveGame(){
 //writes game info to the save.dat file then loads endGame
 }
