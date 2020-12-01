@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Item.h"
 #include "Potion.h"
 #include "Weapon.h"
@@ -40,9 +41,32 @@ using namespace std;
 //     a3.setItemName("health potion");
 //     cout << a1.getItemName() << " " << a2.getItemName() << " " << a3.getItemName() << "\n";
 // }
+void saveScore(int score){
+  string scoreStr = to_string(score);
+  string line;
+  vector<string> scores;
+  ifstream currentFile;
+  ofstream currentFileW;
+  currentFile.open("./save/highscore.dat");
+  while(getline(currentFile, line)){
+    scores.push_back(line);
+  }
+  currentFile.close();
+  scores.push_back(scoreStr);
+  currentFileW.open("./save/highscore.dat");
+  for (int i = 0; i < scores.size(); i++){
+    currentFileW << scores.at(i) << endl;
+  }
+  
+}
 
 int main(){
-    for(int i = 0; i < 20; i++){
-        cout << " " << (rand() % 10) + 1;
-    }
+    saveScore(7);
 }
+
+// 20
+// 18
+// 16
+// 13
+// 20
+// 38
