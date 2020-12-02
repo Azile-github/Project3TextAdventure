@@ -73,9 +73,25 @@ int main(){
 }
 
 int findHighscore(){
-//this should be a sorting algorithm that runs at the start to pass the highscore from highscore.dat to the titlescreen.
-x
-//sorting algorithm goes here
+  string line;
+  int highscore;
+  vector<string> scores;
+  vector<int> intScores;
+  ifstream highscoreFile;
+  highscoreFile.open("./save/highscore.dat");
+  while(getline(highscoreFile, line)){
+    scores.push_back(line);
+  }
+  for(int i = 0; i < scores.size(); i++){
+    intScores.push_back(stoi(scores.at(i)));
+  }
+  highscore = intScores.at(0);
+  for(int i = 0; i < intScores.size(); i++){
+    if(intScores.at(i) > highscore){
+      highscore = intScores.at(i);
+    }
+  }
+  return highscore;
 }
 
 void titleInterface(){//going to be the main title with some ascii art and options
@@ -107,7 +123,7 @@ void titleInterface(){//going to be the main title with some ascii art and optio
                                                                           :          _/
                                                                           :    _..-``
                                                                            l--``)" << endl;
-    cout << "Current highscore is" << findHighscore() << endl;
+    cout << "Current highscore is " << findHighscore() << endl;
     cin >> titleSelect;
     switch (titleSelect)
     {

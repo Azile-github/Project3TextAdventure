@@ -159,7 +159,7 @@ void Game::theGround(){
 
       break;
     case 2:
-      shopkeep.displayMainShopMenu();
+      shopkeep.displayMainShopMenu(player);
       break;
     case 3:
 
