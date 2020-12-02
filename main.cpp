@@ -145,7 +145,10 @@ void newGame(){
   cout << "Wonderful, Wonderful... Welcome to the town of Rathamir, many adventurers like yourself have tried our challenge." << endl;
   cout << "In our town is, the spire. The spire is an infinitely tall tower of challenges for adventurers. We wish you luck on your adventure." << endl;
   writeSave.open("./save/save.dat");
-  x
+  writeSave << name << endl;
+  writeSave << 12 << endl;
+  writeSave << 12 << endl;
+  writeSave << 10 << endl;
   // needs to write to file
 }
 void loadSave(){//ends in calling Game game(player);

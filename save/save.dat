@@ -4,5 +4,9 @@ DEF
 HP
 highest floor
 Gold
-items
-counts
+weapon index number in the weapons vector
+armor index number in the armor vector
+potion index number in the potion vector
+number of potions in inventory
+name of storage file
+name of saveditems file (the items that will be loaded into shopkeep)
