@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 #include "Player.h"
+#include <vector>
+#include "Shopkeep.h"
 
 using namespace std;
 
@@ -16,22 +18,22 @@ class Game{
     int monT1;
     int monT2;
     int monT3;
+    Shopkeep shopkeep;
   public:
     Game();
     Game(Player playerIn);
     void loadFloor(int floor);
-    int gameOver();
-    int attackMenu();
-    int highScoreSort();
+    void gameOver();
     int chooseMonster();
     int readTable(int tableNo, int lineNo);
     void exitGame();
     void saveGame();
-    void introduction();
     void combat(int monsterId);
     void postCombat();
     void death();
     void theGround();
     void generateFloor();
+    int highscoreCalculation();
+    void saveScore(int score);
 };
 #endif

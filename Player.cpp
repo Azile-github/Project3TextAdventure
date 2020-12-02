@@ -19,12 +19,29 @@ string Player::getName(){
 }
 
 Item Player::getItem(int slot){
-  return items[slot];
+  if(slot = 0){
+    return weapon;
+  }
+  if(slot = 1){
+    return armor;
+  }
+  if(slot = 2){
+    return potion;
+  }
 }
 
 void Player::printStats(){
-  //prints a nice little ascii box with the player's stats inside
-  ghfjkul
+  cout << "===========================================" << endl;
+  cout << name << endl;
+  cout << "HP: " << currentHP << "/" << maxHP << endl;
+  cout << "Strength is " << strength << endl;
+  cout << "Attack bonus is " << getAttackBonus() << endl;
+  cout << "Damage bonus is " << getDamageMod() << endl;
+  cout << "Defence is " << defense << endl;
+  cout << "Current weapon is " << weapon.getItemName() << endl;
+  cout << "Current armor is " << armor.getItemName() << endl;
+  cout << "Potions: " << potion.getQuantity() << endl;
+  cout << "===========================================" << endl;
 }
 
 int Player::getMaxHealth(){
@@ -40,12 +57,13 @@ int Player::getStrength(){
 }
 
 int Player::getDefense(){
-  return defense;
+  return defense + armor.getDefBonus();
 }
 
 int Player::getAttackBonus(){
-  return strength + items[0].attack();
+  return strength + weapon.getWeaponAttackBonus();
 }
+
 int Player::getGold(){
   return gold;
 }
@@ -54,8 +72,16 @@ int Player::getHighestFloor(){
   return highestFloor;
 }
 
+int Player::getDamageMod(){
+  return strength + weapon.getWeaponDamageBonus();
+}
+
 void Player::setHealth(int hpIn){
   currentHP = hpIn;
+}
+
+void Player::setMaxHealth(int hpIn){
+  maxHP = hpIn;
 }
 
 void Player::removeHealth(int damage){
@@ -76,6 +102,14 @@ void Player::setGold(int goldIn){
 
 void Player::addGold(int goldIn){
   gold = gold + goldIn;
+}
+
+void Player::addHealth(){
+  currentHP = potion.getHPBonus() + currentHP;
+  if(currentHP > maxHP){
+    currentHP = maxHP;
+  }
+  potion.subtractQuantity();
 }
 
 void Player::setHighestFloor(int floorIn){

@@ -30,17 +30,8 @@ Game::Game(Player playerIn){
   theGround();
 }
 
-int Game::gameOver(){
+void Game::gameOver(){
   //ends the game to title returns -1
-}
-
-int Game::highScoreSort(){
-  //for the title
-  //sorts the highscores gotten to reread to player
-}
-
-void Game::introduction(){
-  // for the introduction and explanation of the game. Given by the shopkeeper
 }
 
 void Game::combat(int monsterId){
@@ -63,14 +54,20 @@ void Game::combat(int monsterId){
         attackRoll = ((rand() % 20) + 1) + player.getAttackBonus();
         cout << "You swing with a " << player.getItem(0).getItemName() << " for " << attackRoll << "." << endl;
         if(attackRoll >= monster.returnDefense()){
-          cout << "You hit the " << monster.returnNameMonster() << " for " << player.getAttackBonus() << endl;
+          cout << "You hit the " << monster.returnNameMonster() << " for " << player.getDamageMod() << endl;
         }else{
           cout << "You missed the " << monster.returnNameMonster() << endl;
         }
-
+        playerTurn = false;
         break;
       case 2:
-        // help oh god oh fuck use item in combat
+        if(player.getItem(2).doesPlayerHave()){
+          player.addHealth();
+          cout << "You used a potion and now have " << player.getHealth() << " HP." << endl;
+          playerTurn = false;
+        }else{
+          cout << "You don't have any potions." << endl;
+        }
         break;
 
       default:
@@ -103,39 +100,53 @@ void Game::combat(int monsterId){
 }
 
 void Game::postCombat(){
+  Potion potion;
   int option;
+  bool escape = false;
   cout << string(10,'\n');
-  cout << "You stand now in an empty room of the tower." << endl;
-  cout << "You still have " << player.getHealth() << " out of " << player.getMaxHealth() << endl;
-  cout << "Floor: " << currentfloor << endl;
-  cout << "Inputs" << endl;
-  cout << "1. Continue up the tower." << endl;
-  cout << "2. Use an item." << endl;
-  cout << "3. Return to bottom." << endl; 
-  cin >> option;
-  switch (option){
-  case 1:
-    generateFloor();
-    break;
-  case 2:
-    //help i dont know about items out of combat
-    break;
-  case 3:
-    theGround();
-    break;
-  default:
-    break;
+  while(escape = false){
+    cout << "You stand now in an empty room of the tower." << endl;
+    cout << "You still have " << player.getHealth() << " out of " << player.getMaxHealth() << endl;
+    cout << "Floor: " << currentfloor << endl;
+    cout << "Inputs" << endl;
+    cout << "1. Continue up the tower." << endl;
+    cout << "2. Drink potion." << endl;
+    cout << "3. View stats." << endl;
+    cout << "4. Return to bottom." << endl; 
+    cin >> option;
+    switch (option){
+      case 1:
+        generateFloor();
+        break;
+      case 2:
+        //help i dont know about items out of combat
+        if(player.getItem(2).doesPlayerHave()){
+          player.addHealth();
+        }
+        break;
+      case 3:
+        player.printStats();
+        break;
+      case 4:
+        theGround();
+        break;
+      default:
+        cout << "Invalid input." << endl;
+        break;
+    }
   }
 }
 
 void Game::death(){
   player.setGold(player.getGold() * 0.6);
+  theGround();
 }
 
 void Game::theGround(){
   int menuChoice;
   bool menuExit = false;
   currentfloor = 0;
+  player.setMaxHealth(10 + player.getHighestFloor() * 2);
   player.setHealth(player.getMaxHealth()); 
   cout << string(50, '\n');
   cout << "You stand at the base of the tower, what would you like to do?" << endl;
@@ -148,7 +159,7 @@ void Game::theGround(){
 
       break;
     case 2:
-      /* code */
+      shopkeep.displayMainShopMenu();
       break;
     case 3:
 
@@ -164,6 +175,7 @@ void Game::generateFloor(){
   int option;
   option = (rand() % 100) + 1;
   if(option > 2){
+    combat(chooseMonster());
   }else{
     int coins = (rand() % 50) + 5;
     cout << "Somehow you managed to find a floor with no monsters, just some coins scattered across the floor." << endl;
@@ -244,4 +256,37 @@ int Game::readTable(int tableNo, int lineNo){
     getline(currentTable, line);
   }
   return stoi(line);
+}
+
+void Game::saveGame(){
+  //writes player save to save.dat
+  x
+  saveScore(highscoreCalculation());
+  gameOver();
+}
+
+int Game::highscoreCalculation(){
+  int gold = player.getGold();
+  int highestFloor = player.getHighestFloor();
+  int score = (gold * 1.2) + (highestFloor * 12.7) + 1;
+  return score;
+}
+
+void Game::saveScore(int score){
+  string scoreStr = to_string(score);
+  string line;
+  vector<string> scores;
+  ifstream currentFile;
+  ofstream currentFileW;
+  currentFile.open("./save/highscore.dat");
+  while(getline(currentFile, line)){
+    scores.push_back(line);
+  }
+  currentFile.close();
+  scores.push_back(scoreStr);
+  currentFileW.open("./save/highscore.dat");
+  for (int i = 0; i < scores.size(); i++){
+    currentFileW << scores.at(i) << endl;
+  }
+  
 }
