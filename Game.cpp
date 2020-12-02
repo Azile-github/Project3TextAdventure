@@ -175,6 +175,7 @@ void Game::generateFloor(){
   int option;
   option = (rand() % 100) + 1;
   if(option > 2){
+    recordMonster(chooseMonster());
     combat(chooseMonster());
   }else{
     int coins = (rand() % 50) + 5;
@@ -270,6 +271,24 @@ int Game::highscoreCalculation(){
   int highestFloor = player.getHighestFloor();
   int score = (gold * 1.2) + (highestFloor * 12.7) + 1;
   return score;
+}
+
+void Game::recordMonster(int mId){
+  string idStr = to_string(mId);
+  string line;
+  vector<string> listedIds;
+  ifstream currentFileR;
+  ofstream currentFileW;
+  currentFileR.open("./save/monsterEncounters.txt");
+  while(getline(currentFileR, line)){
+    listedIds.push_back(line);
+  }
+  currentFileR.close();
+  listedIds.push_back(idStr);
+  currentFileW.open("./save/monsterEncounters.txt");
+  for (int i = 0; i < listedIds.size(); i++){
+    currentFileW << listedIds.at(i) << endl;
+  } 
 }
 
 void Game::saveScore(int score){

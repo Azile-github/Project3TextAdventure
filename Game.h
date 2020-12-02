@@ -35,5 +35,6 @@ class Game{
     void generateFloor();
     int highscoreCalculation();
     void saveScore(int score);
+    void recordMonster(int mId);
 };
 #endif
