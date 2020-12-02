@@ -204,7 +204,7 @@ int Game::chooseMonster(){//returns a monster id to load for floor generation
     }
     if(randNum > 0){
       tableNo = 1;
-      lineNo = (rand() % 10) + 1;
+      lineNo = (rand() % 15) + 1;
       return readTable(tableNo, lineNo);
     }
   }else if(currentfloor > 8){
@@ -221,7 +221,7 @@ int Game::chooseMonster(){//returns a monster id to load for floor generation
     }
     if(randNum > 0){
       tableNo = 1;
-      lineNo = (rand() % 10) + 1;
+      lineNo = (rand() % 15) + 1;
       return readTable(tableNo, lineNo);
     }
   }else if(currentfloor > 0){
@@ -238,7 +238,7 @@ int Game::chooseMonster(){//returns a monster id to load for floor generation
     }
     if(randNum > 0){
       tableNo = 1;
-      lineNo = (rand() % 10) + 1;
+      lineNo = (rand() % 15) + 1;
       return readTable(tableNo, lineNo);
     }
   }
