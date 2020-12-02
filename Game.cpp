@@ -34,15 +34,6 @@ void Game::gameOver(){
   //ends the game to title returns -1
 }
 
-int Game::highScoreSort(){
-  //for the title
-  //sorts the highscores gotten to reread to player
-}
-
-void Game::introduction(){
-  // for the introduction and explanation of the game. Given by the shopkeeper
-}
-
 void Game::combat(int monsterId){
   bool escape = false;
   int menuInput;
@@ -63,7 +54,7 @@ void Game::combat(int monsterId){
         attackRoll = ((rand() % 20) + 1) + player.getAttackBonus();
         cout << "You swing with a " << player.getItem(0).getItemName() << " for " << attackRoll << "." << endl;
         if(attackRoll >= monster.returnDefense()){
-          cout << "You hit the " << monster.returnNameMonster() << " for " << player.getAttackBonus() << endl;
+          cout << "You hit the " << monster.returnNameMonster() << " for " << player.getDamageMod() << endl;
         }else{
           cout << "You missed the " << monster.returnNameMonster() << endl;
         }
@@ -71,6 +62,7 @@ void Game::combat(int monsterId){
         break;
       case 2:
         // help oh god oh fuck use item in combat
+        x
         break;
 
       default:
@@ -103,28 +95,40 @@ void Game::combat(int monsterId){
 }
 
 void Game::postCombat(){
+  Potion potion;
   int option;
+  bool escape = false;
   cout << string(10,'\n');
-  cout << "You stand now in an empty room of the tower." << endl;
-  cout << "You still have " << player.getHealth() << " out of " << player.getMaxHealth() << endl;
-  cout << "Floor: " << currentfloor << endl;
-  cout << "Inputs" << endl;
-  cout << "1. Continue up the tower." << endl;
-  cout << "2. Use an item." << endl;
-  cout << "3. Return to bottom." << endl; 
-  cin >> option;
-  switch (option){
-  case 1:
-    generateFloor();
-    break;
-  case 2:
-    //help i dont know about items out of combat
-    break;
-  case 3:
-    theGround();
-    break;
-  default:
-    break;
+  while(escape = false){
+    cout << "You stand now in an empty room of the tower." << endl;
+    cout << "You still have " << player.getHealth() << " out of " << player.getMaxHealth() << endl;
+    cout << "Floor: " << currentfloor << endl;
+    cout << "Inputs" << endl;
+    cout << "1. Continue up the tower." << endl;
+    cout << "2. Drink potion." << endl;
+    cout << "3. View stats." << endl;
+    cout << "4. Return to bottom." << endl; 
+    cin >> option;
+    switch (option){
+      case 1:
+        generateFloor();
+        break;
+      case 2:
+        //help i dont know about items out of combat
+        if(player.getItem(2).doesPlayerHave()){
+          player.addHealth();
+        }
+        break;
+      case 3:
+        player.printStats();
+        break;
+      case 4:
+        theGround();
+        break;
+      default:
+        cout << "Invalid input." << endl;
+        break;
+    }
   }
 }
 
@@ -149,7 +153,7 @@ void Game::theGround(){
 
       break;
     case 2:
-      /* code */// needs to go to shopkeep
+      shopkeep.displayMainShopMenu();
       break;
     case 3:
 
@@ -249,6 +253,7 @@ int Game::readTable(int tableNo, int lineNo){
 
 void Game::saveGame(){
   //writes player save to save.dat
+  x
   saveScore(highscoreCalculation());
   gameOver();
 }

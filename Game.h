@@ -7,6 +7,7 @@
 #include <string>
 #include "Player.h"
 #include <vector>
+#include "Shopkeep.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Game{
     int monT1;
     int monT2;
     int monT3;
+    Shopkeep shopkeep;
   public:
     Game();
     Game(Player playerIn);
