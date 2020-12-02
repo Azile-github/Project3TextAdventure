@@ -21,8 +21,7 @@ class Game{
     Shopkeep shopkeep;
   public:
     Game();
-    Game(Player playerIn);
-    void loadFloor(int floor);
+    Game(Player playerIn, string savedItemsFileName, string storageFileName);
     void gameOver();
     int chooseMonster();
     int readTable(int tableNo, int lineNo);

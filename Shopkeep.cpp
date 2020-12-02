@@ -428,10 +428,6 @@ void Shopkeep::buyItem(Player player, int index, int type){
     //display potions
 */
 
-void Shopkeep::displayShop(){
-
-}
-
 /** 
  * displays items in the shop that do not have playerHas set to true
  * 

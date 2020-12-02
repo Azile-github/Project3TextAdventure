@@ -172,6 +172,7 @@ void newGame(){
   writeSave << "storage.dat" << endl;
   writeSave << "itemsBase.dat" << endl;
 }
+
 void loadSave(){//ends in calling Game game(player);
   string line;
   ifstream readFile;
@@ -182,9 +183,6 @@ void loadSave(){//ends in calling Game game(player);
   int defense;
   int gold;
   int highestFloor;
-  int weaponIndex;
-  int armorIndex;
-  int potionIndex;
   int numberPotions;
   string storageFileName;
   string savedItemsFileName;
@@ -216,30 +214,16 @@ void loadSave(){//ends in calling Game game(player);
     }
     if(i = 6){
       getline(readFile,line);
-      weaponIndex = stoi(line);
-    }
-    if(i = 7){
-      getline(readFile,line);
-      armorIndex = stoi(line);
-    }
-    if(i = 8){
-      getline(readFile,line);
-      potionIndex = stoi(line);
-    }
-    if(i = 9){
-      getline(readFile,line);
-      numberPotions = stoi(line);
-    }
-    if(i = 10){
-      getline(readFile,line);
       storageFileName = line;
     }
-    if(i = 11){
+    if(i = 7){
       getline(readFile,line);
       savedItemsFileName = line;
     }
   }
+  
   Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff // load this one last it boots to game stuff
-  x
+  Game game(player, savedItemsFileName, storageFileName);
+  
   needs to read from file
 }

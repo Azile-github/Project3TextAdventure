@@ -6,27 +6,12 @@
 #include <fstream>
 
 Game::Game(){
-  ifstream settings;
-  string line;
-  settings.open("./save/settings.txt");
-  getline(settings, line);
-  getline(settings, line);
-  monT1 = stoi(line.substr(26,2));
-  getline(settings, line);
-  monT2 = stoi(line.substr(26,2));
-  getline(settings, line);
-  monT3 = stoi(line.substr(26,2));
-  cout << "t1 is " << monT1 << " t2 is " << monT2 << " t3 is " << monT3;
-}
-void Game::loadFloor(int floor){
-  //loads the contents of the floor ie monster encounter
-  if(floor > 10){
-
-  }
 }
 
-Game::Game(Player playerIn){
+Game::Game(Player playerIn, string savedItemsFileName, string storageFileName){
   player = playerIn;
+  shopkeep.loadItems(savedItemsFileName);
+  shopkeep.loadStorage(storageFileName);
   theGround();
 }
 
