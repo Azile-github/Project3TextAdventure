@@ -18,6 +18,14 @@ int calcCostA(Armor a){
 }
 
 int main(){
+    Shopkeep s;
+    s.loadItems("tx.txt");
+    s.saveItems("tt.txt");
+    
+    return 0;
+}
+/**
+ * 
     vector<string> quotes;      // vector array of shopkeep quotes
     vector<Weapon> weapons;     // vector array of weapon items
     vector<Armor> armors;       // vector array of armor items
@@ -136,7 +144,6 @@ int main(){
             
             cout << "\tAdding to vector\n";
 
-
             // add to armor vector
             armors.push_back(tempA);
 
@@ -178,7 +185,7 @@ int main(){
             // add to potions vector
             potions.push_back(tempP);
 
-        }else{ /* something went wrong if it gets here */ }
+        }else{  something went wrong if it gets here  }
     
     }//endwhile
 
@@ -192,35 +199,26 @@ int main(){
     ofile.open("tx.txt");
 
     ofile << "$ WEAPONS" << endl;
-
     for(Weapon temp : weapons){
         ofile << temp.getItemName() << endl;
                 ofile << temp.getDescription() << endl;
                 ofile << temp.getCost() << endl;
                 ofile << temp.getWeaponAttackBonus() << endl;
-                ofile << temp.getWeaponDamageBonus() << endl;
-                
+                ofile << temp.getWeaponDamageBonus() << endl;        
     }
     ofile << "$ ARMORS" << endl;
-
     for(Armor temp : armors){
         ofile << temp.getItemName() << endl;
                 ofile << temp.getDescription() << endl;
                 ofile << temp.getCost() << endl;
-                ofile << temp.getDefBonus() << endl;
-                
+                ofile << temp.getDefBonus() << endl;            
     }
     ofile << "$ POTIONS" << endl;
-
     for(Potion temp : potions){
             // print out its information
             ofile << temp.getItemName() << endl;
             ofile << temp.getDescription() << endl;
             ofile << temp.getCost() << endl;
-            ofile << temp.getHPBonus() << endl;
-            
+            ofile << temp.getHPBonus() << endl;      
     }// endfor-each
-
-
-    return 0;
-}
+ */

@@ -18,7 +18,7 @@ class Shopkeep{
         vector<Weapon> weapons;     // vector array of weapon items
         vector<Armor> armors;       // vector array of armor items
         vector<Potion> potions;     // vector array of potion items
-        vector<vector<Item>> storage;   // vector of item vectors. There will be three rows and many columns
+        vector<Item> storage[3];   // vector of item vectors. There will be three rows and many columns
                                         // row 0 --> Weapons
                                         // row 1 --> Armor
                                         // row 2 --> Potions
@@ -33,8 +33,14 @@ class Shopkeep{
         void loadQuotes();
         /**
          * loads the items (potions, weapons, and armors) from a given txt file into their respective vectors
+         * @param inFile the name of the tile to be accessed
          */ 
-        void loadItems();
+        void loadItems(string inFile);
+        /**
+         * outputs the items (potions, weapons, and armors) into a given txt file from their respective vectors
+         * @param outFile name of the tile to be accessed
+         */ 
+        void saveItems(string outFile);
         void displayShop();
         void displayShop(int type);
 

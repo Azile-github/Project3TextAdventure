@@ -64,16 +64,14 @@ void Shopkeep::loadQuotes(){
  *      cost
  *      playerHas
  *      hpBonus
+ * @param inFile the name of the file to be processed
  */ 
-void Shopkeep::loadItems(){
+void Shopkeep::loadItems(string inFile){
     // opens file
     ifstream myFile;
-    //myFile.open("ItemsFile.txt");
-    myFile.open("itemtest.txt");
+    myFile.open(inFile);
 
     string line; // the placeholder for the line of the file
-    //char newSect = '$';
-    //char newItem = '#';
     int itemCategory = -1;  // depicts the category of item to save to
                             // 0 is weapons, 1 is armor, 2 is potions
     
@@ -190,7 +188,49 @@ void Shopkeep::loadItems(){
         }else{ /* something went wrong if it gets here */ }
     
     }//endwhile
+    myFile.close();
+}//endloadItems
 
+/**
+ * outputs the items (potions, weapons, and armors) into a given txt file from their respective vectors
+ * @param outFile name of the tile to be accessed
+ */ 
+void Shopkeep::saveItems(string outFile){
+    ofstream ofile;
+
+    ofile.open(outFile);
+
+    ofile << "$ WEAPONS" << endl;
+    for(Weapon temp : weapons){
+        ofile << temp.getItemName() << endl;
+        ofile << temp.getDescription() << endl;
+        ofile << temp.getCost() << endl;
+        if(temp.doesPlayerHave()){ ofile << "t" << endl; } 
+        else{ ofile << "f" << endl; }
+        ofile << temp.getWeaponAttackBonus() << endl;
+        ofile << temp.getWeaponDamageBonus() << endl;        
+    }
+
+    ofile << "$ ARMORS" << endl;
+    for(Armor temp : armors){
+        ofile << temp.getItemName() << endl;
+        ofile << temp.getDescription() << endl;
+        ofile << temp.getCost() << endl;
+        if(temp.doesPlayerHave()){ ofile << "t" << endl; } 
+        else{ ofile << "f" << endl; }
+        ofile << temp.getDefBonus() << endl;            
+    }
+
+    ofile << "$ POTIONS" << endl;
+    for(Potion temp : potions){
+        // print out its information
+        ofile << temp.getItemName() << endl;
+        ofile << temp.getDescription() << endl;
+        ofile << temp.getCost() << endl;
+        if(temp.doesPlayerHave()){ ofile << "t" << endl; } //if player has this, put t for true
+        else{ ofile << "f" << endl; } // otherwise put f for false
+        ofile << temp.getHPBonus() << endl;      
+    }// endfor-each
 }
 
 // methods for misc interactions
@@ -396,7 +436,7 @@ void Shopkeep::displayShop(int type){
 
 }
 
-void shop(){
+void Shopkeep::shop(){
 
 }
 
