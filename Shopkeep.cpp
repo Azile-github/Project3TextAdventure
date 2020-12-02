@@ -499,3 +499,128 @@ void Shopkeep::displayShop(int type){
 // void Shopkeep::displayWeapons();
 // void Shopkeep::displayArmor();
 // void Shopkeep::displayPotions();
+void Shopkeep::loadStorage(string inFile){
+    // opens file
+    ifstream myFile;
+    myFile.open(inFile);
+
+    string line; // the placeholder for the line of the file
+    int itemCategory = -1;  // depicts the category of item to save to
+                            // 0 is weapons, 1 is armor, 2 is potions
+    
+    Weapon tempW;   // temp variable for Weapon object
+    Armor tempA;    // temp variable for armor object
+    Potion tempP;   // temp variable for potion object
+    int tempNum;    // temp variables for integers
+
+    // begins to loop through the file
+    while(getline(myFile, line)){
+
+
+         // if the line is empty, skip and continue
+        if(line.empty()){ continue; } 
+
+        // if the first char of line is $ ...
+        if(line.at(0) == '$'){
+            // add a new vector row to shop
+            itemCategory++;
+            continue;
+        } // otherwise...
+        
+        // decide which category it's loading and add the item to the vector    
+        
+        if(itemCategory == 0){ 
+            // weapons category
+
+            // set name
+            tempW.setItemName(line);
+            getline(myFile, line);
+
+            // set description
+            tempW.setDescription(line);
+            getline(myFile, line);
+
+            // set cost
+            tempNum = stoi(line);
+            tempW.setCost(tempNum);
+            getline(myFile, line);
+
+            // set playerHas to the given variable
+            tempW.setPlayerHas(true); 
+            getline(myFile, line);
+
+            // set attack bonus
+            tempNum = stoi(line);
+            tempW.setWeaponAttackBonus(tempNum);            
+            getline(myFile, line);
+
+            // set damage bonus
+            tempNum = stoi(line);
+            tempW.setWeaponDamageBonus(tempNum);
+
+            // add to weapons vector
+            storage[0].push_back(tempW);
+            
+        }
+        else if(itemCategory == 1){ 
+            // armor category
+
+            // set name
+            tempA.setItemName(line);
+            getline(myFile, line);
+
+            // set description
+            tempA.setDescription(line);
+            getline(myFile, line);
+
+            // set cost
+            tempNum = stoi(line);
+            tempA.setCost(tempNum);
+            getline(myFile, line);
+
+            // set playerHas to default
+            tempA.setPlayerHas(true);
+
+            // set defense bonus
+            tempNum = stoi(line);
+            tempA.setDefBonus(tempNum);
+
+            // add to armor vector
+            storage[1].push_back(tempA);
+
+        }
+        else if(itemCategory == 2){
+            // potion category
+
+            // set playerHas to default
+            tempP.setPlayerHas(false);
+
+            // set name
+            tempP.setItemName(line);
+            getline(myFile, line);
+
+            // set description
+            tempP.setDescription(line);
+            getline(myFile, line);
+
+            // set cost
+            tempNum = stoi(line);
+            tempP.setCost(tempNum);
+            getline(myFile, line);
+
+            // set playerHas to default
+            tempA.setPlayerHas(true);
+
+            // set health bonus
+            tempNum = stoi(line);
+            tempP.setHPBonus(tempNum);
+
+            // add to potions vector
+            storage[2].push_back(tempP);
+
+        }else{ /* something went wrong if it gets here */ }
+    
+    }//endwhile
+    myFile.close();
+
+}

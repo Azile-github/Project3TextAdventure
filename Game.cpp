@@ -247,8 +247,6 @@ int Game::readTable(int tableNo, int lineNo){
 }
 
 void Game::saveGame(){
-  //writes player save to save.dat
-  x
   saveScore(highscoreCalculation());
   gameOver();
 }

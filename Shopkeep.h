@@ -117,6 +117,7 @@ class Shopkeep{
         // vector<Item> getWeapons() const;
         // vector<Item> getArmors() const;
         // vector<Item> getW() const;
+        void loadStorage(string inFile);
 
 };
 #endif

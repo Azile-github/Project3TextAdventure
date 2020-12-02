@@ -4,71 +4,20 @@
 #include <stdlib.h> 
 #include <vector>
 #include <string>
-#include <Game.h>
-#include <Player.h>
-#include <Monster.h>
+#include "Game.h"
+#include "Player.h"
+#include "Monster.h"
 #include <stdlib.h>
 
 using namespace std;
 
 void loadSave();
-void endGame();
-int highscoreCalculation();
 int findHighscore();
 void titleInterface();
 void newGame();
-int readTable(int tableNo, int lineNo);
-int chooseMonster(int floor);
-void theGround(Player player);
-void generateFloor(int currentFloor, Player player);
-void saveGame();
-int rewardCalc();
 void endGame();
-int highscoreCalculation(Player player);
-void saveScare(int score);
 
 int main(){
-  bool loadState = false;
-  ifstream highscore;
-  ifstream save;
-  ifstream items;
-  ifstream shopStatus;
-  highscore.open("highscore.dat");
-  save.open("save.dat");
-  items.open("items.dat");
-  shopStatus.open("shop.dat");
-  while (loadState == false){
-    highscore.open("highscore.dat");
-    save.open("save.dat");
-    items.open("items.dat");
-    shopStatus.open("shop.dat");
-    cout << "Checking files..." << endl;
-    if(!highscore.is_open() || !save.is_open() || !items.is_open() || !shopStatus.is_open()){
-      cout << "One or more file has failed to open..." << endl;
-      if(!highscore.is_open()){
-        cout << "Generating high score file..." << endl;
-        ofstream createHighscore;
-        createHighscore.open("highscore.dat");
-        createHighscore.close();
-      }
-      if(!save.is_open()){
-        cout << "Generating save file..." << endl;
-        ofstream createSave;
-        createSave.open("save.dat");
-        createSave.close();
-      }
-      if(!items.is_open()){
-        cout << "ERROR: Items file failure! Please redownload the game!" << endl;
-        return -1;
-      }
-      if(!shopStatus.is_open()){
-        cout << "Error: Shop file failure! Please redownload the game!" << endl;
-        return -1;
-      }
-    }else{
-      loadState = true;
-    }
-  }
   titleInterface();
 }
 
@@ -123,7 +72,7 @@ void titleInterface(){//going to be the main title with some ascii art and optio
                                                                           :          _/
                                                                           :    _..-``
                                                                            l--``)" << endl;
-    cout << "Current highscore is " << findHighscore() << endl;
+    //cout << "Current highscore is " << findHighscore() << endl;
     cin >> titleSelect;
     switch (titleSelect)
     {
@@ -151,10 +100,10 @@ void newGame(){
   string name;
   string option = "n";
   cout << string(50, '\n');
-  while(option != "y", option != "Y"){
+  while(option!= "Y"){
     cout << "What is your name, adventurer?" << endl;
     cin >> name;
-    cout << "Ah, so you are the one they call " << name << "is that right?" << endl;
+    cout << "Ah, so you are the one they call " << name << " is that right?" << endl;
     cout << "(Y/N)" << endl;
     cin >> option;
   }
@@ -167,10 +116,9 @@ void newGame(){
   writeSave << 10 << endl;
   writeSave << 1 << endl;
   writeSave << 0 << endl;
-  writeSave << 0 << endl;
-  writeSave << -1 << endl;
   writeSave << "storage.dat" << endl;
   writeSave << "itemsBase.dat" << endl;
+  loadSave();
 }
 
 void loadSave(){//ends in calling Game game(player);
@@ -193,19 +141,23 @@ void loadSave(){//ends in calling Game game(player);
     }
     if(i = 1){
       getline(readFile,line);
+      cout << "1";
       maxHP = stoi(line);
       currentHP = maxHP;
     }
     if(i = 2){
       getline(readFile,line);
+      cout << "2";
       strength = stoi(line);
     }
     if(i = 3){
       getline(readFile,line);
+      cout << "3";
       defense = stoi(line);
     }
     if(i = 4){
       getline(readFile,line);
+      cout << "4";
       gold = stoi(line);
     }
     if(i = 5){
@@ -224,6 +176,8 @@ void loadSave(){//ends in calling Game game(player);
   
   Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff // load this one last it boots to game stuff
   Game game(player, savedItemsFileName, storageFileName);
-  
-  needs to read from file
+}
+
+void endGame(){
+  exit(0);
 }
