@@ -119,3 +119,7 @@ void Player::setHighestFloor(int floorIn){
 void Player::addOneHighestFloor(){
   highestFloor++;
 }
+
+void Player::boughtPotion(){
+  potion.addPotion();
+}

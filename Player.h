@@ -48,6 +48,7 @@ class Player{
     void addHealth();
     void setHighestFloor(int floorIn);
     void addOneHighestFloor();
+    void boughtPotion();
 };
 
 

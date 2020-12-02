@@ -9,6 +9,7 @@
 #include "Weapon.h"
 #include "Potion.h"
 #include "Armor.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -41,7 +42,6 @@ class Shopkeep{
          * @param outFile name of the tile to be accessed
          */ 
         void saveItems(string outFile);
-        void displayShop();
         void displayShop(int type);
 
         // methods for misc interactions
@@ -84,13 +84,12 @@ class Shopkeep{
          *      3: prints out the stats of encountered monsters
          *      Anything else: player goes back to the tower and the floor they left off on
          */ 
-        void displayMainShopMenu();
+        void displayMainShopMenu(Player player);
         /**
          * @returns a random shopkeep quote (also used by the displayMenu method)
          */ 
         string getQuote();
 
-        void shop();
         
 
         // methods for buying
@@ -99,7 +98,7 @@ class Shopkeep{
          * cost of the item. If the player doesn't have enough, the shopkeep will reject the purchase. If the player
          * has enough, they may buy it, and the item's playerHas variable is set to true (depending on the item)
          */ 
-        void buyItem();
+        void buyItem(Player player, int index, int type);
 
         /**
          * If player wishes to save game, this method will be called on and will load everything into the current game items file

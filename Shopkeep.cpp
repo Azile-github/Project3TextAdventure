@@ -275,7 +275,7 @@ void Shopkeep::accessItemInStorage(vector<Item> items){
  *      3: prints out the stats of encountered monsters using getMonsterStats()
  *      Anything else: player goes back to the tower and the floor they left off on
  */ 
-void Shopkeep::displayMainShopMenu(){
+void Shopkeep::displayMainShopMenu(Player player){
     // retrieve quote
     cout << "\"" << getQuote() << "\""  << "\n";
 
@@ -289,29 +289,57 @@ void Shopkeep::displayMainShopMenu(){
         getline(cin, input);
 
         if(input.compare("1") == 0){
-            cout << "What do you want? (Enter a number.)\n";
-            cout << "\t1. Weapons\n\t2. Armors\n\t3. Potions\nChoose any other integer to exit shopping.\n";
-            getline(cin,input);
 
-            // if the input is 1, 2, or 3  --> continue to displaying the options      
-            if(stoi(input) > 0 && stoi(input) < 4)
-                displayShop(stoi(input));
-            // otherwise continue
+            while(true){
+                cout << "What do you want? (Enter a number.)\n";
+                cout << "\t1. Weapons\n\t2. Armors\n\t3. Potions\nChoose any other integer to exit shopping.\n";
+                getline(cin,input);
+
+                // if the input is 1, 2, or 3  --> continue to displaying the options      
+                if(stoi(input) > 0 && stoi(input) < 4){
+                    displayShop(stoi(input));
+                    cout << "Enter the ITEM # of what you'd like to purchase. Enter a non-number to leave this menu.\n";
+                    string choice;
+                    getline(cin, choice);
+                    try{
+                        cout << "Are you sure you want to buy ";
+                        if(stoi(input) == 1)     {  cout << weapons.at(stoi(choice)).getItemName() << " for " << weapons.at(stoi(choice)).getCost() << " coins?"; }
+                        else if(stoi(input) == 2){  cout << armors.at(stoi(choice)).getItemName() << " for " << armors.at(stoi(choice)).getCost() << " coins?"; }
+                        else if(stoi(input) == 3){  cout << potions.at(stoi(choice)).getItemName() << " for " << potions.at(stoi(choice)).getCost() << " coins?"; }
+                        cout << " (You have " << player.getGold() << " coins.)\n";
+                        cout << "Press y to confirm purchase. Press n to deny purchase and look again. Press anything else to exit this menu.\n";
+                        string toBuy;
+                        getline(cin, toBuy);
+                        if(toBuy.compare("y") == 0){ buyItem(player, stoi(choice), stoi(input)); }
+                        else if(toBuy.compare("n") == 0){ continue; }
+                        else{ break; }
+                        
+                    }
+                    catch(exception ex){
+                        cout << "Invalid input! Try again.\n";
+                        continue;
+                    }
+                }
+                // otherwise continue the mainmenu loop
+                break;
+            }
             continue;
         }
         if(input.compare("2") == 0){
             // Open Storage menu
+            continue;
         }
         if(input.compare("3") == 0){
             // prints out the stats of encountered monsters using getMonsterStats()
 
         }else if(input.compare("4") == 0){
-            // triggers the access storage menu
+            // triggers the monster stats menu
+
+            continue;
         }
         // otherwise leave the shop
-
+        break;
     }
-
 }
 /**
  * @returns a random shopkeep quote (also used by the displayMenu method)
@@ -333,8 +361,35 @@ void Shopkeep::displayMonsterStats(){
  * cost of the item. If the player doesn't have enough, the shopkeep will reject the purchase. If the player
  * has enough, they may buy it, and the item's playerHas variable is set to true (depending on the item)
  */ 
-void Shopkeep::buyItem(){
+void Shopkeep::buyItem(Player player, int index, int type){
 
+        if(type == 1){ //weapons
+            if(player.getGold() <= weapons.at(index).getCost()){
+                player.setGold(player.getGold() - weapons.at(index).getCost());
+                cout << "\tPurchase successful, " << player.getName() << "! Added to storage.\n";
+                weapons.at(index).setPlayerHas(true);
+                storage[0].push_back(weapons.at(index));
+            }
+            else{cout << "This item is too expensive!\n";}
+        }
+        else if(type == 2){
+            if(player.getGold() <= armors.at(index).getCost()){
+                player.setGold(player.getGold() - armors.at(index).getCost());
+                cout << "\tPurchase successful, " << player.getName() << "! Added to storage.\n";
+                armors.at(index).setPlayerHas(true);
+                storage[1].push_back(armors.at(index));
+            }
+            else{ cout << "This item is too expensive!\n";}
+        }
+        else if(type == 3){
+            if(player.getGold() <= potions.at(index).getCost()){
+                player.setGold(player.getGold() - weapons.at(index).getCost());
+                cout << "\tPurchase successful, " << player.getName() << "! Added to storage.\n";
+                player.boughtPotion();
+            }
+            else {cout << "This item is too expensive!\n";}
+            
+        }
 }
 
 /*
@@ -442,15 +497,6 @@ void Shopkeep::displayShop(int type){
     }
     else{ cout << "ERROR: Invalid numerical parameter input. A number outside this function's defined range of 0 to 2 was given.\n"; } // error statement
 
-}
-
-void Shopkeep::shop(){
-
-    while(true){
-        cout << "What do you want?\n";
-        
-        displayMainShopMenu();
-    }
 
 }
 
