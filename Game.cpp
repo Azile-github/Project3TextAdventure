@@ -58,11 +58,16 @@ void Game::combat(int monsterId){
         }else{
           cout << "You missed the " << monster.returnNameMonster() << endl;
         }
-
+        playerTurn = false;
         break;
       case 2:
-        // help oh god oh fuck use item in combat
-        x
+        if(player.getItem(2).doesPlayerHave()){
+          player.addHealth();
+          cout << "You used a potion and now have " << player.getHealth() << " HP." << endl;
+          playerTurn = false;
+        }else{
+          cout << "You don't have any potions." << endl;
+        }
         break;
 
       default:
@@ -134,6 +139,7 @@ void Game::postCombat(){
 
 void Game::death(){
   player.setGold(player.getGold() * 0.6);
+  theGround();
 }
 
 void Game::theGround(){
@@ -169,6 +175,7 @@ void Game::generateFloor(){
   int option;
   option = (rand() % 100) + 1;
   if(option > 2){
+    combat(chooseMonster());
   }else{
     int coins = (rand() % 50) + 5;
     cout << "Somehow you managed to find a floor with no monsters, just some coins scattered across the floor." << endl;
