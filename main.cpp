@@ -149,20 +149,81 @@ void newGame(){
   writeSave << 12 << endl;
   writeSave << 12 << endl;
   writeSave << 10 << endl;
-  // needs to write to file
+  writeSave << 1 << endl;
+  writeSave << 0 << endl;
+  writeSave << 0 << endl;
+  writeSave << -1 << endl;
+  writeSave << "storage.dat" << endl;
+  writeSave << "itemsBase.dat" << endl;
 }
 void loadSave(){//ends in calling Game game(player);
+  string line;
+  ifstream readFile;
   string name;
   int maxHP;
   int currentHP;
   int strength;
   int defense;
   int gold;
-  int quantity[4];
-  Item items[4];
   int highestFloor;
-  Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff
-  //(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
+  int weaponIndex;
+  int armorIndex;
+  int potionIndex;
+  int numberPotions;
+  string storageFileName;
+  string savedItemsFileName;
+  for(int i = 0; i < 13; i++){
+    if(i = 0){
+      getline(readFile,line);
+      name = line;
+    }
+    if(i = 1){
+      getline(readFile,line);
+      maxHP = stoi(line);
+      currentHP = maxHP;
+    }
+    if(i = 2){
+      getline(readFile,line);
+      strength = stoi(line);
+    }
+    if(i = 3){
+      getline(readFile,line);
+      defense = stoi(line);
+    }
+    if(i = 4){
+      getline(readFile,line);
+      gold = stoi(line);
+    }
+    if(i = 5){
+      getline(readFile,line);
+      highestFloor = stoi(line);
+    }
+    if(i = 6){
+      getline(readFile,line);
+      weaponIndex = stoi(line);
+    }
+    if(i = 7){
+      getline(readFile,line);
+      armorIndex = stoi(line);
+    }
+    if(i = 8){
+      getline(readFile,line);
+      potionIndex = stoi(line);
+    }
+    if(i = 9){
+      getline(readFile,line);
+      numberPotions = stoi(line);
+    }
+    if(i = 10){
+      getline(readFile,line);
+      storageFileName = line;
+    }
+    if(i = 11){
+      getline(readFile,line);
+      savedItemsFileName = line;
+    }
+  }
+  Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff // load this one last it boots to game stuff
   x
   needs to read from file
 }
