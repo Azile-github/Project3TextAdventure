@@ -120,7 +120,7 @@ void Game::postCombat(){
         break;
       case 2:
         //help i dont know about items out of combat
-        if(player.getItem(2).doesPlayerHave()){
+        if(player.getItem(2).doesPlayerHave(){
           player.addHealth();
         }
         break;

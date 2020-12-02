@@ -40,11 +40,16 @@ int Potion::getNumPotions() const{
  * subtracts one from the number of potions in inventory, assuming that the quantity is not equal to 0
  */ 
 void Potion::subtractPotion(){
-    quantityInInventory--;
+    if(quantityInInventory > 0)
+        quantityInInventory--;
+    if(quantityInInventory == 0)
+        setPlayerHas(false);
 }
 /**
  * adds a potion to the player's inventory, AKA adds one to the quantityInInventory variable 
  */ 
 void Potion::addPotion(){
+    if(!doesPlayerHave())
+        setPlayerHas(true);
     quantityInInventory++;
 }
