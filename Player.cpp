@@ -40,7 +40,7 @@ void Player::printStats(){
   cout << "Defence is " << defense << endl;
   cout << "Current weapon is " << weapon.getItemName() << endl;
   cout << "Current armor is " << armor.getItemName() << endl;
-  cout << "Potions: " << potion.getQuantity() << endl;
+  cout << "Potions: " << potion.getNumPotions() << endl;
   cout << "===========================================" << endl;
 }
 
@@ -109,7 +109,7 @@ void Player::addHealth(){
   if(currentHP > maxHP){
     currentHP = maxHP;
   }
-  potion.subtractQuantity();
+  potion.subtractPotion();
 }
 
 void Player::setHighestFloor(int floorIn){
