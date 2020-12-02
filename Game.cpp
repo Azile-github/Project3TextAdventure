@@ -290,3 +290,7 @@ void Game::saveScore(int score){
   }
   
 }
+void sortScore(){
+
+}
+

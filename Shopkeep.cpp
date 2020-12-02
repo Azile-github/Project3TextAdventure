@@ -279,27 +279,37 @@ void Shopkeep::displayMainShopMenu(){
     // retrieve quote
     cout << "\"" << getQuote() << "\""  << "\n";
 
-    string input;
-    // display options
-    cout << "What would you like to do? (Enter a number.)\n";
-    cout << "\t1. Shop \n\t2. Access Storage \n\t3. Monster Stats \n\t4. Leave Game\n\tPress anything else to travel back to the tower\n";
+    while(true){
 
-    getline(cin, input);
+        string input;
+        // display options
+        cout << "What would you like to do? (Enter a number.)\n";
+        cout << "\t1. Shop \n\t2. Access Storage \n\t3. Monster Stats \n\tPress anything else to leave the shop.\n";
 
-    if(input.compare("1") == 0){
-        // Open shop menu
-        shop();
+        getline(cin, input);
 
-    }else if(input.compare("2") == 0){
-        // Open Storage menu
-    }else if(input.compare("3") == 0){
-        // prints out the stats of encountered monsters using getMonsterStats()
+        if(input.compare("1") == 0){
+            cout << "What do you want? (Enter a number.)\n";
+            cout << "\t1. Weapons\n\t2. Armors\n\t3. Potions\nChoose any other integer to exit shopping.\n";
+            getline(cin,input);
 
-    }else if(input.compare("4") == 0){
-        // triggers the exit menu
-    }else{
-        // player returns to tower
-        // nothing happens
+            // if the input is 1, 2, or 3  --> continue to displaying the options      
+            if(stoi(input) > 0 && stoi(input) < 4)
+                displayShop(stoi(input));
+            // otherwise continue
+            continue;
+        }
+        if(input.compare("2") == 0){
+            // Open Storage menu
+        }
+        if(input.compare("3") == 0){
+            // prints out the stats of encountered monsters using getMonsterStats()
+
+        }else if(input.compare("4") == 0){
+            // triggers the access storage menu
+        }
+        // otherwise leave the shop
+
     }
 
 }
@@ -382,7 +392,7 @@ void Shopkeep::displayShop(){
 void Shopkeep::displayShop(int type){
     int index = -1; // allows easy access into the vector by the player to request an item to buy
 
-    if(type == 0){
+    if(type - 1 == 0){
         cout << "\"Beware the sharp edges!\" says the shopkeep.\n\n\t\t\t~*~ WEAPON MENU ~*~\n\n";
         //display available weapons
         for(Weapon temp : weapons){
@@ -399,7 +409,7 @@ void Shopkeep::displayShop(int type){
             // otherwise do nothing
         }// endfor-each
     }
-    else if(type == 1){
+    else if(type - 1 == 1){
 
         cout << "\"A classic way to prevent wounds,\" says the shopkeep.\n\n\t\t\t~*~ ARMOR MENU ~*~\n\n";
         //display available armors
@@ -418,7 +428,7 @@ void Shopkeep::displayShop(int type){
         }// endfor-each
 
     }
-    else if(type == 2){
+    else if(type - 1 == 2){
         cout << "\"Need some health? Got a wound? I got everything you need!\" cheers the shopkeep.\n\n\t\t\t~*~ POTION MENU ~*~\n\n";
         //display potions. Doesn't matter if playerHas is true or false
         for(Potion temp : potions){
@@ -435,6 +445,12 @@ void Shopkeep::displayShop(int type){
 }
 
 void Shopkeep::shop(){
+
+    while(true){
+        cout << "What do you want?\n";
+        
+        displayMainShopMenu();
+    }
 
 }
 
