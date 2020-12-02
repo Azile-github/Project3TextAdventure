@@ -173,10 +173,12 @@ void Game::theGround(){
 
 void Game::generateFloor(){
   int option;
+  int id;
   option = (rand() % 100) + 1;
   if(option > 2){
-    recordMonster(chooseMonster());
-    combat(chooseMonster());
+    id = chooseMonster();
+    recordMonster(id);
+    combat(id);
   }else{
     int coins = (rand() % 50) + 5;
     cout << "Somehow you managed to find a floor with no monsters, just some coins scattered across the floor." << endl;
