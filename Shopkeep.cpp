@@ -99,24 +99,22 @@ void Shopkeep::loadItems(string inFile){
         if(itemCategory == 0){ 
             // weapons category
 
-            // set playerHas to default
-            tempW.setPlayerHas(false);
-
             // set name
             tempW.setItemName(line);
             getline(myFile, line);
-
-             
 
             // set description
             tempW.setDescription(line);
             getline(myFile, line);
 
-             
-
             // set cost
             tempNum = stoi(line);
             tempW.setCost(tempNum);
+            getline(myFile, line);
+
+            // set playerHas to the given variable
+            if(line.compare("f") == 0){ tempW.setPlayerHas(false);}
+            else{ tempW.setPlayerHas(true); }
             getline(myFile, line);
 
             // set attack bonus

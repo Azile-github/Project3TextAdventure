@@ -179,6 +179,11 @@ f
 4
 8
 $ ARMORS
+BUBBLE WRAP
+Protection for the most novice of adventurers.
+0
+f
+1
 CROWN OF THE SLAYER
 This historically significant crown was worn by the killer of the first monster. This obsidian crown was worn by the first Emperor, who led an attack to apprehend the beast. This crown has an angelic aesthetic, glowing slightly and emitting a slight warm comfort.
 32
@@ -193,7 +198,7 @@ CIRCLET OF THE SNOWSTRIX
 A symbolic piece of Verglasium jewelry given to the economic leader of Yngersoll, the Snowstrix. "Shiny, no?" the shopkeep winks.
 11
 f
-1
+2
 SANDWRAP OF THE ASCHANARI
 This cloth headwrap was designed to protect Aschanari merchants and travelers from the harsh environmental factors of the Ajurrani desert. When you pick it up, a seemingly impossible amount of sand falls from it. "I hate sand," the shopkeeper mumbles. "It's coarse and rough and irritating... and it gets everywhere." They swipe the sand off the counter with a huff.
 16
@@ -208,7 +213,7 @@ MACARONI CROWN
 The shopkeep shrugs: "What? It protected somebody up until I came to own it. Might work for you, too."
 11
 f
-1
+3
 MANTLE OF INFINITE HORROR
 The wearer of this object takes up the mantle as the most honorable person alive, and must uphold the rules and regulations of chivalry no matter how much they'd like to. You find yourself bowing politely to the shopkeep when you try it on. "Chivalry doesn't seem to be dead!" They laugh, "but the last wearer of that armor certainly is."
 31
@@ -268,12 +273,12 @@ DEVIL'S RUNNING SHOES
 Seemingly a completely ordinary pair of shoes. Further inspection shows that the shoes move and mold to fit the users feet precisely, illustrating a organic, possibly parasitic, nature. When they notice you eyeing it, the shopkeep pulls them out of your reach.
 11
 f
-1
+3
 EARPLUGS
 Some small noise cancelling earplugs.
 11
 f
-1
+2
 THE IMMOVABLE OBJECT
 An ancient, heavy breastplate, seemingly molded in pure ice. (Although, no amount of heat seems to be able to melt such material.)
 22
