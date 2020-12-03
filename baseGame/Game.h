@@ -38,5 +38,8 @@ class Game{
     void saveScore(int score);
     void recordMonster(int mId);
     void introShop();
+    void sortScore();
+    void outputSortedFile(vector<int> list, string fileIn);
+    vector<int> intakeFileToSort(string fileIn);
 };
 #endif

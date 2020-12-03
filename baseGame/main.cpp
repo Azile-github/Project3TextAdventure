@@ -16,6 +16,7 @@ int findHighscore();
 void titleInterface();
 void newGame();
 void endGame();
+void saveGame();
 
 int main(){
   titleInterface();
@@ -86,6 +87,7 @@ void titleInterface(){//going to be the main title with some ascii art and optio
       break;
 
     case 3:
+    
       endGame();
       break;
 
@@ -93,7 +95,6 @@ void titleInterface(){//going to be the main title with some ascii art and optio
       break;
     }
   }
-
 }
 
 void newGame(){
@@ -148,23 +149,19 @@ void loadSave(){//ends in calling Game game(player);
     //}
     //if(i == 1){
       getline(readFile,line);
-      cout << "1";
       maxHP = stoi(line);
       currentHP = maxHP;
    // }
    // if(i == 2){
       getline(readFile,line);
-      cout << "2";
       strength = stoi(line);
    // }
     //if(i == 3){
       getline(readFile,line);
-      cout << "3";
       defense = stoi(line);
    // }
     //if(i == 4){
       getline(readFile,line);
-      cout << "4";
       gold = stoi(line);
    // }
    // if(i == 5){
@@ -197,3 +194,4 @@ void loadSave(){//ends in calling Game game(player);
 void endGame(){
   exit(0);
 }
+

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "Shopkeep.h"
 #include "Item.h"
 #include "Weapon.h"
@@ -14,7 +15,7 @@ using namespace std;
 
 // Constructors
 Shopkeep::Shopkeep(){
-    //empty
+    loadQuotes();
 }
 
 Weapon Shopkeep::getWeapons(int index) const{
@@ -81,6 +82,7 @@ void Shopkeep::loadItems(string inFile){
     // opens file
     ifstream myFile;
     myFile.open(inFile);
+    if(!myFile.is_open()){ cout << "File is not open. Restart game.\n";}
 
     string line; // the placeholder for the line of the file
     int itemCategory = -1;  // depicts the category of item to save to
@@ -292,58 +294,55 @@ void Shopkeep::displayMainShopMenu(Player player){
 
     while(true){
 
-        string input;
+        int input;
         // display options
         cout << "What would you like to do? (Enter a number.)\n";
         cout << "\t1. Shop \n\t2. Access Storage \n\t3. Monster Stats \n\tPress anything else to leave the shop.\n";
 
-        getline(cin, input);
+        cin >> input;
 
-        if(input.compare("1") == 0){
+        if(input == 1){
 
             while(true){
                 cout << "What do you want? (Enter a number.)\n";
-                cout << "\t1. Weapons\n\t2. Armors\n\t3. Potions\nChoose any other integer to exit shopping.\n";
-                getline(cin,input);
+                cout << "\t1. Weapons\n\t2. Armors\n\t3. Potions\nPress any other integer to exit shopping.\n";
+                cin >> input;
 
                 // if the input is 1, 2, or 3  --> continue to displaying the options      
-                if(stoi(input) > 0 && stoi(input) < 4){
-                    displayShop(stoi(input));
+                if(input > 0 && input < 4){
+                    displayShop(input);
+                    cout << "\tYou have " << player.getGold() << " coins.\n";
                     cout << "Enter the ITEM # of what you'd like to purchase. Enter a non-number to leave this menu.\n";
-                    string choice;
-                    getline(cin, choice);
-                    try{
+                    string choiceStr;
+                    int choice;
+                    cin >> choiceStr;
+                    try{ choice = stoi(choiceStr); }catch(exception ex){ continue; }
+                    
                         cout << "Are you sure you want to buy ";
-                        if(stoi(input) == 1)     {  cout << weapons.at(stoi(choice)).getItemName() << " for " << weapons.at(stoi(choice)).getCost() << " coins?"; }
-                        else if(stoi(input) == 2){  cout << armors.at(stoi(choice)).getItemName() << " for " << armors.at(stoi(choice)).getCost() << " coins?"; }
-                        else if(stoi(input) == 3){  cout << potions.getItemName() << " for " << potions.getCost() << " coins?"; }
+                        if(input == 1)     {  cout << weapons.at(choice).getItemName() << " for " << weapons.at(choice).getCost() << " coins?"; }
+                        else if(input == 2){  cout << armors.at(choice).getItemName() << " for " << armors.at(choice).getCost() << " coins?"; }
+                        else if(input == 3){  cout << potions.getItemName() << " for " << potions.getCost() << " coins?"; }
                         cout << " (You have " << player.getGold() << " coins.)\n";
-                        cout << "Press y to confirm purchase. Press n to deny purchase and look again. Press anything else to exit this menu.\n";
-                        string toBuy;
-                        getline(cin, toBuy);
-                        if(toBuy.compare("y") == 0){ buyItem(player, stoi(choice), stoi(input)); }
-                        else if(toBuy.compare("n") == 0){ continue; }
+                        cout << "Press 1 to confirm purchase. Press 0 to deny purchase and look again. Press any other integer to exit this menu.\n";
+                        int toBuy;
+                        cin >> toBuy;
+                        if(toBuy == 1){ buyItem(player, choice, input); continue;}
+                        else if(toBuy == 0){ continue; }
                         else{ break; }
-                        
-                    }
-                    catch(exception ex){
-                        cout << "Invalid input! Try again.\n";
-                        continue;
-                    }
                 }
                 // otherwise continue the mainmenu loop
                 break;
             }
             continue;
         }
-        if(input.compare("2") == 0){
+        if(input == 2){
             // Open Storage menu
             continue;
         }
-        if(input.compare("3") == 0){
+        if(input== 3){
             // prints out the stats of encountered monsters using getMonsterStats()
 
-        }else if(input.compare("4") == 0){
+        }else if(input == 4){
             // triggers the monster stats menu
 
             continue;
@@ -375,7 +374,7 @@ void Shopkeep::displayMonsterStats(){
 void Shopkeep::buyItem(Player player, int index, int type){
 
         if(type == 1){ //weapons
-            if(player.getGold() <= weapons.at(index).getCost()){
+            if(player.getGold() >= weapons.at(index).getCost()){
                 player.setGold(player.getGold() - weapons.at(index).getCost());
                 cout << "\tPurchase successful, " << player.getName() << "! Added to storage.\n";
                 weapons.at(index).setPlayerHas(true);
@@ -384,7 +383,7 @@ void Shopkeep::buyItem(Player player, int index, int type){
             else{cout << "This item is too expensive!\n";}
         }
         else if(type == 2){
-            if(player.getGold() <= armors.at(index).getCost()){
+            if(player.getGold() >= armors.at(index).getCost()){
                 player.setGold(player.getGold() - armors.at(index).getCost());
                 cout << "\tPurchase successful, " << player.getName() << "! Added to storage.\n";
                 armors.at(index).setPlayerHas(true);
@@ -393,13 +392,12 @@ void Shopkeep::buyItem(Player player, int index, int type){
             else{ cout << "This item is too expensive!\n";}
         }
         else if(type == 3){
-            if(player.getGold() <= potions.getCost()){
+            if(player.getGold() >= potions.getCost()){
                 player.setGold(player.getGold() - potions.getCost());
                 cout << "\tPurchase successful, " << player.getName() << "! Added to storage.\n";
                 player.boughtPotion();
             }
             else {cout << "This item is too expensive!\n";}
-            
         }
 }
 

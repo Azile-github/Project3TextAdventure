@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "Shopkeep.h"
+#include <vector>
 #include <fstream>
 
 Game::Game(){
@@ -16,10 +17,9 @@ Game::Game(Player playerIn, string savedItemsFileName, string saveStorageFileNam
   setPlayer(playerIn);
   shopkeep.loadItems(savedItemsFileName);
   shopkeep.loadStorage(saveStorageFileName);
-  if(game == 0){
+  if(!game){
     introShop();
   }
-
   theGround();
 }
 
@@ -42,10 +42,10 @@ void Game::introShop(){
   cout << "\"Hello I'm going to give you starting items now.\"\n";
   cout << "\"Here's a STICC.\"\n";
   player.setWeapon(shopkeep.getWeapons(0));
-  cout << "\tGained STICC.\n";
+  cout << "\tGained " << player.getWeapon().getItemName() << ".\n";
   cout << "\"Here's some BUBBLEWRAP armor.\"\n";
   player.setArmor(shopkeep.getArmors(0));
-  cout << "\tGained BUBBLEWRAP.\n";
+  cout << "\tGained " << player.getArmor().getItemName() << "\n";
   cout << "\"Okay goodbye\"\n";
 }
 
@@ -67,7 +67,7 @@ void Game::combat(int monsterId){
       cout << "1. Attack" << endl;
       cout << "2. Use Item" << endl;
       cin >> menuInput;
-      switch (menuInput)
+      switch(menuInput)
       {
       case 1:
         attackRoll = ((rand() % 20) + 1) + player.getAttackBonus();
@@ -143,6 +143,7 @@ void Game::postCombat(){
       // use potion
         if(player.getPotion().doesPlayerHave()){
           player.usePotion();
+          cout << "Your health is now " << player.getHealth() << "!" << endl;
         }
     }
     else if(option == 3){
@@ -171,6 +172,7 @@ void Game::theGround(){
   cout << string(2, '\n');
   cout << "You stand at the base of the tower, what would you like to do?" << endl;
   while(menuExit == false){
+    cout << "\033[2J\033[1;1H"; // clears screen
     cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep, and 3 to save and quit." << endl;
     cin >> menuChoice;
     if(menuChoice == 1){ generateFloor(); }
@@ -189,8 +191,9 @@ void Game::theGround(){
 }
 
 void Game::generateFloor(){
+  currentfloor++;
   int option;
-  option = (rand() % 100) + 1;
+  for(int i = -1; i < currentfloor; i++){ option = (rand() % 100) + 1; }
   if(option > 2){
     int id = chooseMonster();
     recordMonster(id);
@@ -200,7 +203,6 @@ void Game::generateFloor(){
     cout << "Somehow you managed to find a floor with no monsters, just some coins scattered across the floor." << endl;
     cout << "You get " << coins << " gold!" << endl;
     player.addGold(coins);
-    currentfloor++;
     postCombat();
   }
 }
@@ -280,7 +282,22 @@ int Game::readTable(int tableNo, int lineNo){
 }
 
 void Game::saveGame(){
+  ofstream writeSave;
+  cout << string(50, '\n');
+  writeSave.open("save.dat");
+  writeSave << player.getName() << endl; // name
+  writeSave << player.getMaxHealth() << endl; // maxHP
+  writeSave << player.getStrength() << endl;  // strength
+  writeSave << player.getDefense() << endl;   // defense
+  writeSave << player.getGold() << endl;      // gold/coins
+  writeSave << player.getHighestFloor() << endl;   // highest floor reached
+  writeSave << "storage.dat" << endl;         // saved storage/inventory file name
+  writeSave << "savedItems.dat" << endl;      // saved items file name
+  writeSave << 1 << endl;   // 0 if this is a new game, 1 if not
+  writeSave << player.getNumPotions() << endl;   // number of potions in inventory
+  writeSave.close();
   saveScore(highscoreCalculation());
+  sortScore();
   gameOver();
 }
 
@@ -325,16 +342,53 @@ void Game::saveScore(int score){
   for (int i = 0; i < scores.size(); i++){
     currentFileW << scores.at(i) << endl;
   }
-  
-}
-void sortScore(){
-
 }
 
-// int main(){
+void Game::sortScore(){
+  // intake file info to process
+  vector<int> scores = intakeFileToSort("./save/highscore.dat");
+  vector<int> scoresSorted;
 
+  // sort the info:
+  // while it's not sorted...
+  while(true){
+    // find the largest value and put it in scoresSorted
+    int index = 0;
+    for(int pos = 1; pos < scores.size() - 1; pos++){
+      if(scores.at(index) < scores.at(pos)){
+        index = pos;
+      }
+    }
+    scoresSorted.push_back(scores.at(index));
+    scores.erase(scores.begin()+index); // erases the indexth element
+    // if scores is empty, leave the loop
+    if(scores.size() == 0 ){ break; }
+  }
 
+  // output file info
+  outputSortedFile(scoresSorted, "./save/highscore.dat");
+}
 
-//   return 0;
-  
-// }
+void Game::outputSortedFile(vector<int> list, string fileIn){
+  ofstream myFile;
+  myFile.open(fileIn);
+  if(!myFile.is_open()) { cout << "File is not open.\n"; }
+  string line;
+  for(int score : list){
+    myFile << score << endl;
+  }
+  myFile.close();
+}
+
+vector<int> Game::intakeFileToSort(string fileIn){
+  vector<int> list;
+  ifstream myFile;
+  myFile.open(fileIn);
+  if(!myFile.is_open()) { cout << "File is not open.\n"; }
+  string line;
+  while(getline(myFile, line)){
+    list.push_back(stoi(line));
+  }
+  myFile.close();
+  return list;
+}

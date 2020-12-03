@@ -30,7 +30,6 @@ Potion Player::getPotion() const{
 }
 void Player::setWeapon(Weapon wIn){
   weapon = wIn;
-
 }
 void Player::setArmor(Armor aIn){
   armor = aIn;
