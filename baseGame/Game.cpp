@@ -19,6 +19,7 @@ Game::Game(Player playerIn, string savedItemsFileName, string saveStorageFileNam
   if(game == 0){
     introShop();
   }
+  
   theGround();
 }
 
