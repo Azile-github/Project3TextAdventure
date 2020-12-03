@@ -21,7 +21,7 @@ class Game{
     Shopkeep shopkeep;
   public:
     Game();
-    Game(Player playerIn, string savedItemsFileName, string storageFileName);
+    Game(Player playerIn, string savedItemsFileName, string saveStorageFileName, bool game);
     void gameOver();
     int chooseMonster();
     int readTable(int tableNo, int lineNo);

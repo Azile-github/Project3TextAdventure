@@ -6,19 +6,22 @@
 #include "Shopkeep.h"
 #include <fstream>
 
-
-
 Game::Game(){
-  
+  //haha emp
 }
 
-Game::Game(Player playerIn, string savedItemsFileName, string saveStorageFileName){
+Game::Game(Player playerIn, string savedItemsFileName, string saveStorageFileName, bool game){
   //player.setEqualTo(playerIn);
   setPlayer(playerIn);
   shopkeep.loadItems(savedItemsFileName);
   shopkeep.loadStorage(saveStorageFileName);
+  if(game == 0){
+    introShop();
+  }
   theGround();
 }
+
+
 
 void Game::setPlayer(Player p){
   player.setName(p.getName());
@@ -66,9 +69,12 @@ void Game::combat(int monsterId){
       {
       case 1:
         attackRoll = ((rand() % 20) + 1) + player.getAttackBonus();
+        cout << endl;
         cout << "You swing with a " << player.getWeapon().getItemName() << " for " << attackRoll << "." << endl;
         if(attackRoll >= monster.returnDefense()){
+          cout << "You hit!!!" << endl;
           cout << "You hit the " << monster.returnNameMonster() << " for " << player.getDamageMod() << endl;
+          monster.takeDamage(player.getDamageMod());
         }else{
           cout << "You missed the " << monster.returnNameMonster() << endl;
         }
@@ -86,11 +92,11 @@ void Game::combat(int monsterId){
 
       default:
         cout << "Invalid Input!" << endl;
-        cout << string(50,'\n');
+        cout << string(2,'\n');
         break;
       }
     }
-    cout << string(50,'\n');
+    cout << string(2,'\n');
     cout << "The " << monster.returnNameMonster() << " attacks!" << endl;
     attackRoll = ((rand() % 20) + 1) + monster.returnStrength();
     if(attackRoll >= player.getDefense()){
@@ -117,7 +123,7 @@ void Game::postCombat(){
   Potion potion;
   int option;
   bool escape = false;
-  cout << string(10,'\n');
+  cout << string(2,'\n');
   while(escape = false){
     cout << "You stand now in an empty room of the tower." << endl;
     cout << "You still have " << player.getHealth() << " out of " << player.getMaxHealth() << endl;
@@ -160,11 +166,11 @@ void Game::theGround(){
   int menuChoice;
   bool menuExit = false;
   currentfloor = 0;
-  player.setMaxHealth(10 + player.getHighestFloor() * 2);
+  player.setMaxHealth(30 + player.getHighestFloor() * 2);
   player.setHealth(player.getMaxHealth()); 
-  cout << string(50, '\n');
+  cout << string(2, '\n');
   cout << "You stand at the base of the tower, what would you like to do?" << endl;
-  while(menuExit = false){
+  while(menuExit == false){
     cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep, and 3 to save and quit." << endl;
     cin >> menuChoice;
     switch (menuChoice){
@@ -187,10 +193,9 @@ void Game::theGround(){
 
 void Game::generateFloor(){
   int option;
-  int id;
   option = (rand() % 100) + 1;
   if(option > 2){
-    id = chooseMonster();
+    int id = chooseMonster();
     recordMonster(id);
     combat(id);
   }else{
@@ -204,6 +209,7 @@ void Game::generateFloor(){
 }
 
 int Game::chooseMonster(){//returns a monster id to load for floor generation
+  cout << "Finding ID CHOOSEMONSTER" << endl;
   int randNum;
   int tableNo;
   int lineNo;
@@ -241,7 +247,7 @@ int Game::chooseMonster(){//returns a monster id to load for floor generation
       lineNo = (rand() % 15) + 1;
       return readTable(tableNo, lineNo);
     }
-  }else if(currentfloor > 0){
+  }else if(currentfloor >= 0){
     randNum = (rand() % 10) + 1; //1 to 10
     if(randNum > 9){//table 3
       tableNo = 3;
@@ -272,6 +278,7 @@ int Game::readTable(int tableNo, int lineNo){
   for(int i = 0; i < lineNo; i++){
     getline(currentTable, line);
   }
+  currentTable.close();
   return stoi(line);
 }
 

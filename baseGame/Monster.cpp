@@ -45,6 +45,7 @@ Monster::Monster(int idIn){
       rewardBaseIn = stoi(line);
     }
   }
+  currentMonsterFile.close();
   setName(mName);
   setTable(tableIn);
   setHP(hp);

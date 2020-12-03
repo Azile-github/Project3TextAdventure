@@ -21,7 +21,8 @@ class Game{
     Shopkeep shopkeep;
   public:
     Game();
-    Game(Player playerIn, string savedItemsFileName, string saveStorageFileName);
+
+    Game(Player playerIn, string savedItemsFileName, string saveStorageFileName, bool game);
     void setPlayer(Player p);
     void gameOver();
     int chooseMonster();

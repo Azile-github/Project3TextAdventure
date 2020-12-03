@@ -81,7 +81,6 @@ void Shopkeep::loadItems(string inFile){
     // opens file
     ifstream myFile;
     myFile.open(inFile);
-/**
 
     string line; // the placeholder for the line of the file
     int itemCategory = -1;  // depicts the category of item to save to
@@ -144,7 +143,6 @@ void Shopkeep::loadItems(string inFile){
             // armor category
 
             // set playerHas to default
-            tempA.setPlayerHas(false);
 
             // set name
             tempA.setItemName(line);
@@ -158,6 +156,11 @@ void Shopkeep::loadItems(string inFile){
             tempNum = stoi(line);
             tempA.setCost(tempNum);
             getline(myFile, line);
+
+            if(line.compare("f") == 0){ tempW.setPlayerHas(false);}
+            else{ tempW.setPlayerHas(true); }
+            getline(myFile, line);
+
 
             // set defense bonus
             tempNum = stoi(line);
@@ -192,10 +195,10 @@ void Shopkeep::loadItems(string inFile){
             tempNum = stoi(line);
             potions.setHPBonus(tempNum);
 
-        }else{  something went wrong if it gets here  }
+        }else{  /*something went wrong if it gets here*/  }
     
     }//endwhile
-*/
+
     myFile.close();
 }//endloadItems
 
