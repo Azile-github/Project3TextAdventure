@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Monster.h"
 #include "Player.h"
+#include "Item.h"
 #include "Shopkeep.h"
 #include <fstream>
 
@@ -96,7 +97,7 @@ void Game::combat(int monsterId){
         break;
       }
     }
-    cout << string(2,'\n');
+    
     cout << "The " << monster.returnNameMonster() << " attacks!" << endl;
     attackRoll = ((rand() % 20) + 1) + monster.returnStrength();
     if(attackRoll >= player.getDefense()){
@@ -334,3 +335,10 @@ void sortScore(){
 
 }
 
+// int main(){
+
+
+
+//   return 0;
+  
+// }

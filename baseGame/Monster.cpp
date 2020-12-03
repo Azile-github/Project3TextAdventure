@@ -21,30 +21,39 @@ Monster::Monster(int idIn){
     cout << "Critical Error: Failed to load Monster!";
   }
   //while(getline(currentMonsterFile, line)){
-  for(int i = 0; i < 6; i++){
+ 
     getline(currentMonsterFile, line);
-    if(i == 0){
+    
       mName = line;
-    }
-    if(i == 1){
+    
+    getline(currentMonsterFile, line);
+   
       table = stoi(line);
-    }
-    if(i == 2){
+    
+    getline(currentMonsterFile, line);
+
       hp = stoi(line);
-    }
-    if(i == 3){
+    
+    getline(currentMonsterFile, line);
+   
       dmg = stoi(line);
-    }
-    if(i == 4){
+
+      getline(currentMonsterFile, line);
+    
+   
       str = stoi(line);
-    }
-    if(i == 5){
+
+      getline(currentMonsterFile, line);
+ 
+
       def = stoi(line);
-    }
-    if(i == 6){
+
+      getline(currentMonsterFile, line);
+
+      cout << "rewardBase is " << line << endl;
       rewardBaseIn = stoi(line);
-    }
-  }
+
+  
   currentMonsterFile.close();
   setName(mName);
   setTable(tableIn);
