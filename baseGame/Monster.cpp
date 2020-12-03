@@ -20,7 +20,6 @@ Monster::Monster(int idIn){
   if(!currentMonsterFile.is_open()){
     cout << "Critical Error: Failed to load Monster!";
   }
-  //while(getline(currentMonsterFile, line)){
  
     getline(currentMonsterFile, line);
     

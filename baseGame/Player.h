@@ -25,7 +25,7 @@ class Player{
     int highestFloor;
   public:
     Player();
-    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn);
+    Player(string nameIn, int maxHpIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn, int numPotionsIn);
 
     string getName() const;
     Weapon getWeapon() const;
@@ -57,7 +57,8 @@ class Player{
     void setHighestFloor(int floorIn);
     void addOneHighestFloor();
     void boughtPotion();
-    void setEqualTo(Player pIn);
+    void setNumPotion(int num);
+
 };
 
 

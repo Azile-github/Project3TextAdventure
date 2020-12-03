@@ -19,10 +19,9 @@ Game::Game(Player playerIn, string savedItemsFileName, string saveStorageFileNam
   if(game == 0){
     introShop();
   }
-  
+
   theGround();
 }
-
 
 
 void Game::setPlayer(Player p){
@@ -36,6 +35,7 @@ void Game::setPlayer(Player p){
   player.setDefense(p.getDefense());
   player.setGold(p.getGold());
   player.setHighestFloor(p.getHighestFloor());
+  player.setNumPotion(p.getNumPotions());
 }
 
 void Game::introShop(){
@@ -125,8 +125,7 @@ void Game::postCombat(){
   Potion potion;
   int option;
   bool escape = false;
-  cout << string(2,'\n');
-  while(escape = false){
+  while(escape == false){
     cout << "You stand now in an empty room of the tower." << endl;
     cout << "You still have " << player.getHealth() << " out of " << player.getMaxHealth() << endl;
     cout << "Floor: " << currentfloor << endl;
@@ -136,25 +135,24 @@ void Game::postCombat(){
     cout << "\t3. View stats." << endl;
     cout << "\t4. Return to bottom." << endl; 
     cin >> option;
-    switch (option){
-      case 1:
+    if(option == 1){
         generateFloor();
         break;
-      case 2:
-        //help i dont know about items out of combat
+    }
+    else if(option == 2){
+      // use potion
         if(player.getPotion().doesPlayerHave()){
           player.usePotion();
         }
-        break;
-      case 3:
-        //player.printStats();
-        break;
-      case 4:
-        theGround();
-        break;
-      default:
-        cout << "Invalid input." << endl;
-        break;
+    }
+    else if(option == 3){
+      player.printStats();
+    }
+    else if(option == 4){
+      break;
+    }
+    else{
+      cout << "Invalid input." << endl;
     }
   }
 }
@@ -175,20 +173,17 @@ void Game::theGround(){
   while(menuExit == false){
     cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep, and 3 to save and quit." << endl;
     cin >> menuChoice;
-    switch (menuChoice){
-    case 1:
-      generateFloor();
-
+    if(menuChoice == 1){ generateFloor(); }
+    else if(menuChoice == 2){ 
+      shopkeep.displayMainShopMenu(player);
+    }
+    else if(menuChoice == 3){
+      //leave
+      saveGame();
       break;
-    case 2:
-      // shopkeep.displayMainShopMenu(player);
-      break;
-    case 3:
-
-      break;
-    default:
+    }
+    else{
       cout << "Invalid input" << endl;
-      break;
     }
   }
 }

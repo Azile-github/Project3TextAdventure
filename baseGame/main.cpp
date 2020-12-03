@@ -112,13 +112,14 @@ void newGame(){
   cout << "In our town is, the spire. The spire is an infinitely tall tower of challenges for adventurers. We wish you luck on your adventure." << endl;
   writeSave.open("save.dat");
   writeSave << name << endl;
-  writeSave << 12 << endl;
-  writeSave << 12 << endl;
   writeSave << 30 << endl;
+  writeSave << 12 << endl;
+  writeSave << 12 << endl;
   writeSave << 1 << endl;
   writeSave << 0 << endl;
   writeSave << "storage.dat" << endl;
   writeSave << "items.dat" << endl;
+  writeSave << "0" << endl;
   writeSave << "0" << endl;
   writeSave.close();
   loadSave();
@@ -186,8 +187,10 @@ void loadSave(){//ends in calling Game game(player);
       }else{
         gameState = 0;
       }
+      getline(readFile,line);
+      int potionNum = stoi(line);
   readFile.close();
-  Player player(name, maxHP, strength, defense, gold, highestFloor); // Needs items input and stuff // load this one last it boots to game stuff
+  Player player(name, maxHP, strength, defense, gold, highestFloor, potionNum); // Needs items input and stuff // load this one last it boots to game stuff
   Game game(player, itemsFileName, storageFileName, gameState);
 }
 

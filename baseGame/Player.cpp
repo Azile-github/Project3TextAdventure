@@ -4,7 +4,7 @@
 Player::Player(){
 
 }
-Player::Player(string nameIn, int maxHPIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn){
+Player::Player(string nameIn, int maxHPIn, int strengthIn, int defenseIn, int goldIn, int highestFloorIn, int numPotionsIn){
   name = nameIn;
   maxHP = maxHPIn;
   currentHP = maxHPIn;
@@ -12,6 +12,7 @@ Player::Player(string nameIn, int maxHPIn, int strengthIn, int defenseIn, int go
   defense = defenseIn;
   gold = goldIn;
   highestFloor = highestFloorIn;
+  numPotions = numPotionsIn;
 }
 
 string Player::getName() const{
@@ -45,10 +46,10 @@ void Player::printStats(){
   cout << "Strength is " << strength << endl;
   cout << "Attack bonus is " << getAttackBonus() << endl;
   cout << "Damage bonus is " << getDamageMod() << endl;
-  cout << "Defence is " << defense << endl;
+  cout << "Defense is " << getDefense() << endl;
   cout << "Current weapon is " << weapon.getItemName() << endl;
   cout << "Current armor is " << armor.getItemName() << endl;
-  cout << "Potions: " << potion.getNumPotions() << endl;
+  cout << "Potions: " << numPotions << endl;
   cout << "===========================================" << endl;
 }
 
@@ -120,7 +121,7 @@ void Player::usePotion(){
   if(currentHP > maxHP){
     currentHP = maxHP;
   }
-  potion.subtractPotion();
+  numPotions--;
 }
 
 void Player::setHighestFloor(int floorIn){
@@ -132,19 +133,12 @@ void Player::addOneHighestFloor(){
 }
 
 void Player::boughtPotion(){
-  potion.addPotion();
+  numPotions++;
 }
 void Player::setName(string nameIn){
   name = nameIn;
 
 }
-void Player::setEqualTo(Player pIn){
-  name = pIn.getName();
-  maxHP = pIn.getMaxHealth();
-  currentHP = pIn.getHealth();
-  strength = pIn.getStrength();
-  defense = pIn.getDefense();
-  gold = pIn.getGold();
-  
-  highestFloor = pIn.getHighestFloor();
+void Player::setNumPotion(int num){
+  numPotions = num;
 }
