@@ -84,8 +84,9 @@ void Game::combat(int monsterId){
         break;
       case 2:
         if(player.getArmor().doesPlayerHave()){
-          player.usePotion();
-          cout << "You used a potion and now have " << player.getHealth() << " HP." << endl;
+          
+          if(player.getNumPotions() > 0){player.usePotion(); cout << "You used a potion and now have " << player.getHealth() << " HP." << endl;}
+          else{ cout << "You do not have any potions!\n"; }
           playerTurn = false;
         }else{
           cout << "You don't have any potions." << endl;
@@ -141,9 +142,11 @@ void Game::postCombat(){
     }
     else if(option == 2){
       // use potion
-        if(player.getPotion().doesPlayerHave()){
+        if(player.getNumPotions() > 0){
           player.usePotion();
           cout << "Your health is now " << player.getHealth() << "!" << endl;
+        }else{
+          cout << "You do not have any potions.\n";
         }
     }
     else if(option == 3){
@@ -172,7 +175,6 @@ void Game::theGround(){
   cout << string(2, '\n');
   cout << "You stand at the base of the tower, what would you like to do?" << endl;
   while(menuExit == false){
-    cout << "\033[2J\033[1;1H"; // clears screen
     cout << "Input 1, to go into the tower, input 2 to talk with the shopkeep, and 3 to save and quit." << endl;
     cin >> menuChoice;
     if(menuChoice == 1){ generateFloor(); }
@@ -264,6 +266,7 @@ int Game::chooseMonster(){//returns a monster id to load for floor generation
       return readTable(tableNo, lineNo);
     }
   }
+  return 0;
 }
 
 int Game::readTable(int tableNo, int lineNo){
@@ -332,13 +335,13 @@ void Game::saveScore(int score){
   vector<string> scores;
   ifstream currentFile;
   ofstream currentFileW;
-  currentFile.open("./save/highscore.dat");
+  currentFile.open("highscore.dat");
   while(getline(currentFile, line)){
     scores.push_back(line);
   }
   currentFile.close();
   scores.push_back(scoreStr);
-  currentFileW.open("./save/highscore.dat");
+  currentFileW.open("highscore.dat");
   for (int i = 0; i < scores.size(); i++){
     currentFileW << scores.at(i) << endl;
   }
@@ -346,7 +349,7 @@ void Game::saveScore(int score){
 
 void Game::sortScore(){
   // intake file info to process
-  vector<int> scores = intakeFileToSort("./save/highscore.dat");
+  vector<int> scores = intakeFileToSort("highscore.dat");
   vector<int> scoresSorted;
 
   // sort the info:
@@ -366,7 +369,7 @@ void Game::sortScore(){
   }
 
   // output file info
-  outputSortedFile(scoresSorted, "./save/highscore.dat");
+  outputSortedFile(scoresSorted, "highscore.dat");
 }
 
 void Game::outputSortedFile(vector<int> list, string fileIn){

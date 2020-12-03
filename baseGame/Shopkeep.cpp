@@ -297,7 +297,7 @@ void Shopkeep::displayMainShopMenu(Player player){
         int input;
         // display options
         cout << "What would you like to do? (Enter a number.)\n";
-        cout << "\t1. Shop \n\t2. Access Storage \n\t3. Monster Stats \n\tPress anything else to leave the shop.\n";
+        cout << "\t1. Shop \n\t2. Access Storage \n\t3. Monster Stats \n\tPress any other integer to leave the shop.\n";
 
         cin >> input;
 

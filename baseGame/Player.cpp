@@ -116,11 +116,16 @@ void Player::addGold(int goldIn){
 }
 
 void Player::usePotion(){
-  currentHP = potion.getHPBonus() + currentHP;
+  if(numPotions > 0){
+    currentHP = potion.getHPBonus() + currentHP;
   if(currentHP > maxHP){
     currentHP = maxHP;
   }
   numPotions--;
+  }else {
+    cout << "You don't have any potions!\n";
+  }
+  
 }
 
 void Player::setHighestFloor(int floorIn){

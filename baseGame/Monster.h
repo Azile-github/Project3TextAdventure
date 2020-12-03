@@ -85,10 +85,6 @@ class Monster{
      * @returns the base reward of the monster
      */ 
     int returnRewardBase() const;
-    /**
-     * @returns the attack bonus of the monster
-     */ 
-    int getAttackBonus() const;
 
     // OTHERS
     /**

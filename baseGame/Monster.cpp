@@ -49,7 +49,6 @@ Monster::Monster(int idIn){
 
       getline(currentMonsterFile, line);
 
-      cout << "rewardBase is " << line << endl;
       rewardBaseIn = stoi(line);
 
   
@@ -122,8 +121,4 @@ int Monster::returnRewardBase() const{
 int Monster::takeDamage(int damage) {
   hitPoints = hitPoints - damage;
   return hitPoints;
-}
-
-int Monster::getAttackBonus() const{
-//takes the strength to return attack bonus
 }
